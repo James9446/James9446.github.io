@@ -35,7 +35,9 @@
                     };
                     analytics.SNIPPET_VERSION = "4.1.0";
                     analytics.load("ILiDIXxOYOGpphskZMb42GQTGYrz9AZq");
-                    analytics.page('', {}, console.log(this));
+                    analytics.page('', {
+                        referrer: this.title
+                    }, console.log(this.page));
                 }
         }();
     </script>
