@@ -91,9 +91,12 @@
                 email: email,
                 name: fullname
             });
+            setTimeout( function() {analytics.track('timed out 0 test', user, function() {
+                window.location.href = "";
+            }); console.log('timed out 0 test');}, 0)
             analytics.track('destination submitted', user, function() {
                 window.location.href = "";
-            });
+            }, console.log('regular track call'););
         }
     </script>
 </body>
