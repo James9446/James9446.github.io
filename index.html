@@ -59,7 +59,7 @@
             }, 1);
         })();
     </script> -->
-    <h1>What is your favorite place to travel?</h1>
+    <h1>James</h1>
     <p>I am building a directory of the sweetest travel destinations.</p>
     <form name="travel" onsubmit="identify(event)">
         What is your favorite travel destination?
@@ -93,10 +93,11 @@
             });
             setTimeout( function() {analytics.track('timed out 0 test', user, function() {
                 window.location.href = "";
-            }); console.log('timed out 0 test');}, 0)
+                console.log('timed out 0 test')
+            });}, 0)
             analytics.track('destination submitted', user, function() {
                 window.location.href = "";
-            }, console.log('regular track call'););
+            }, console.log('regular track call'));
         }
     </script>
 </body>
