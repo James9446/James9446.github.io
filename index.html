@@ -5,8 +5,8 @@
     <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function(event) {
-            console.log("1 DOM fully loaded and parsed");
+        function addAnalytics() {
+            console.info("DOM loaded");
             
             ! function() {
             var analytics = window.analytics = window.analytics || [];
@@ -42,9 +42,23 @@
 //                     analytics.track('page has loaded test event', {}, console.log('"page has loaded test" event fired'));
                 }
             }();
+        }
+
+        // `DOMContentLoaded` may fire before your script has a chance to run, so check before adding a listener
+        if (document.readyState === "loading") {
+            console.log('adding DOMContentLoaded event listener');
+            document.addEventListener("DOMContentLoaded", addAnalytics);
+        } else {  // `DOMContentLoaded` already fired
+            console.log('content already loaded, firing addAnalytics');
+            addAnalytics();
+        }
+//         document.addEventListener("DOMContentLoaded", function(event) {
+//             console.log("1 DOM fully loaded and parsed");
             
-            console.log("2 DOM fully loaded and parsed");
-        });
+            
+            
+//             console.log("2 DOM fully loaded and parsed");
+//         });
         
         
     </script>
@@ -66,7 +80,7 @@
             }, 1);
         })();
     </script> -->
-    <h1>James</h1>
+    <h1>James Reynolds</h1>
     <p>I am building a directory of the sweetest travel destinations.</p>
     <form name="travel" onsubmit="identify(event)">
         What is your favorite travel destination?
