@@ -5,6 +5,10 @@
     <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            console.log("DOM fully loaded and parsed");
+        });
+        
         ! function() {
             var analytics = window.analytics = window.analytics || [];
             if (!analytics.initialize)
@@ -39,10 +43,6 @@
 //                     analytics.track('page has loaded test event', {}, console.log('"page has loaded test" event fired'));
                 }
         }();
-        
-        document.addEventListener("DOMContentLoaded", function(event) {
-            console.log("DOM fully loaded and parsed");
-        });
     </script>
 
 </head>
@@ -62,7 +62,7 @@
             }, 1);
         })();
     </script> -->
-    <h1>James Reynolds</h1>
+    <h1>Reynolds</h1>
     <p>I am building a directory of the sweetest travel destinations.</p>
     <form name="travel" onsubmit="identify(event)">
         What is your favorite travel destination?
