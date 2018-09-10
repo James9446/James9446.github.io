@@ -39,6 +39,10 @@
 //                     analytics.track('page has loaded test event', {}, console.log('"page has loaded test" event fired'));
                 }
         }();
+        
+        document.addEventListener("DOMContentLoaded", function(event) {
+            console.log("DOM fully loaded and parsed");
+        });
     </script>
 
 </head>
@@ -58,7 +62,7 @@
             }, 1);
         })();
     </script> -->
-    <h1>James</h1>
+    <h1>James Reynolds</h1>
     <p>I am building a directory of the sweetest travel destinations.</p>
     <form name="travel" onsubmit="identify(event)">
         What is your favorite travel destination?
