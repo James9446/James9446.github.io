@@ -6,10 +6,9 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {
-            console.log("DOM fully loaded and parsed");
-        });
-        
-        ! function() {
+            console.log("1 DOM fully loaded and parsed");
+            
+            ! function() {
             var analytics = window.analytics = window.analytics || [];
             if (!analytics.initialize)
                 if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice.");
@@ -42,7 +41,12 @@
                     analytics.page();
 //                     analytics.track('page has loaded test event', {}, console.log('"page has loaded test" event fired'));
                 }
-        }();
+            }();
+            
+            console.log("2 DOM fully loaded and parsed");
+        });
+        
+        
     </script>
 
 </head>
@@ -62,7 +66,7 @@
             }, 1);
         })();
     </script> -->
-    <h1>Reynolds</h1>
+    <h1>James</h1>
     <p>I am building a directory of the sweetest travel destinations.</p>
     <form name="travel" onsubmit="identify(event)">
         What is your favorite travel destination?
