@@ -5,81 +5,44 @@
     <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title>
 
     <script>
-        function addAnalytics() {
-            console.info("DOM loaded");
-            
-            ! function() {
-            var analytics = window.analytics = window.analytics || [];
-            if (!analytics.initialize)
-                if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice.");
-                else {
-                    analytics.invoked = !0;
-                    analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on"];
-                    analytics.factory = function(t) {
-                        return function() {
-                            var e = Array.prototype.slice.call(arguments);
-                            e.unshift(t);
-                            analytics.push(e);
-                            return analytics
-                        }
-                    };
-                    for (var t = 0; t < analytics.methods.length; t++) {
-                        var e = analytics.methods[t];
-                        analytics[e] = analytics.factory(e)
+        ! function() {
+        var analytics = window.analytics = window.analytics || [];
+        if (!analytics.initialize)
+            if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice.");
+            else {
+                analytics.invoked = !0;
+                analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on"];
+                analytics.factory = function(t) {
+                    return function() {
+                        var e = Array.prototype.slice.call(arguments);
+                        e.unshift(t);
+                        analytics.push(e);
+                        return analytics
                     }
-                    analytics.load = function(t, e) {
-                        var n = document.createElement("script");
-                        n.type = "text/javascript";
-                        n.async = !0;
-                        n.src = ("https:" === document.location.protocol ? "https://" : "http://") + "cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js";
-                        var o = document.getElementsByTagName("script")[0];
-                        o.parentNode.insertBefore(n, o);
-                        analytics._loadOptions = e
-                    };
-                    analytics.SNIPPET_VERSION = "4.1.0";
-                    analytics.load("ILiDIXxOYOGpphskZMb42GQTGYrz9AZq");
-                    analytics.page();
-//                     analytics.track('page has loaded test event', {}, console.log('"page has loaded test" event fired'));
+                };
+                for (var t = 0; t < analytics.methods.length; t++) {
+                    var e = analytics.methods[t];
+                    analytics[e] = analytics.factory(e)
                 }
-            }();
-        }
-
-        // `DOMContentLoaded` may fire before your script has a chance to run, so check before adding a listener
-        if (document.readyState === "loading") {
-            console.log('adding DOMContentLoaded event listener');
-            document.addEventListener("DOMContentLoaded", addAnalytics);
-        } else {  // `DOMContentLoaded` already fired
-            console.log('content already loaded, firing addAnalytics');
-            addAnalytics();
-        }
-//         document.addEventListener("DOMContentLoaded", function(event) {
-//             console.log("1 DOM fully loaded and parsed");
-            
-            
-            
-//             console.log("2 DOM fully loaded and parsed");
-//         });
-        
-        
+                analytics.load = function(t, e) {
+                    var n = document.createElement("script");
+                    n.type = "text/javascript";
+                    n.async = !0;
+                    n.src = ("https:" === document.location.protocol ? "https://" : "http://") + "cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js";
+                    var o = document.getElementsByTagName("script")[0];
+                    o.parentNode.insertBefore(n, o);
+                    analytics._loadOptions = e
+                };
+                analytics.SNIPPET_VERSION = "4.1.0";
+                analytics.load("ILiDIXxOYOGpphskZMb42GQTGYrz9AZq");
+                analytics.page();
+            }
+        }();        
     </script>
 
 </head>
 
 <body>
-    <!-- <script type="text/javascript">
-        var _kiq = _kiq || [];
-        (function() {
-            setTimeout(function() {
-                var d = document,
-                    f = d.getElementsByTagName('script')[0],
-                    s = d.createElement('script');
-                s.type = 'text/javascript';
-                s.async = true;
-                s.src = '//s3.amazonaws.com/ki.js/48090/gzr.js';
-                f.parentNode.insertBefore(s, f);
-            }, 1);
-        })();
-    </script> -->
     <h1>James</h1>
     <p>I am building a directory of the sweetest travel destinations.</p>
     <form name="travel" onsubmit="identify(event)">
@@ -95,7 +58,6 @@
         <input name="submit" type="submit" value="submit" />
     </form>
     <script type="text/javascript">
-//         analytics.track('page has loaded test event', {}, console.log('"page has loaded test" event fired'));
         function identify(e) {
             e.preventDefault();
             var form = e.target;
