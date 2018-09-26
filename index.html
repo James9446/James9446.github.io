@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <h1>James Reynolds</h1>
+    <h1>James</h1>
     <p>I am building a directory of the sweetest travel destinations.</p>
     <form name="travel" onsubmit="identify(event)">
         What is your favorite travel destination?
@@ -71,13 +71,15 @@
                 destination: destination,
                 details: details
             };
+            
+            analytics.track('destination submitted', user, function() {
+                window.location.href = "";
+            }, console.log('"destination submitted" event has fired'));
+            
             analytics.identify('123456', {
                 email: email,
                 name: fullname
             });
-            analytics.track('destination submitted', user, function() {
-                window.location.href = "";
-            }, console.log('"destination submitted" event has fired'));
         }
     </script>
 </body>
