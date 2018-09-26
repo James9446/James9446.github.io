@@ -71,10 +71,10 @@
                 destination: destination,
                 details: details
             };
-            analytics.identify('4567', {
+            analytics.identify('123456', {
                 email: email,
                 name: fullname
-            }, {integrations: []});
+            });
             analytics.track('destination submitted', user, function() {
                 window.location.href = "";
             }, console.log('"destination submitted" event has fired'));
