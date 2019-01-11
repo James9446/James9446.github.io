@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <h1>James</h1>
+    <h1>James R</h1>
     <p>I am building a directory of the sweetest travel destinations.</p>
     <form name="travel" onsubmit="identify(event)">
         What is your favorite travel destination?
@@ -64,12 +64,12 @@
             var email = form["email"].value;
             var fullname = form["fullname"].value;
             var destination = form["destination"].value;
-            var details = form["details"].value;
+//             var details = form["details"].value;
             var user = {
                 email: email,
                 name: fullname,
                 destination: destination,
-                details: details
+//                 details: details
             };
             
             analytics.track('destination submitted', user, function() {
@@ -81,6 +81,9 @@
                 name: fullname
             });
         }
+        (function () {
+          e.target["details"].value
+        })();
     </script>
 <!--     <script type="text/javascript">
         console.log('remember to switch back your write key!!');
