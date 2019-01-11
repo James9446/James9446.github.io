@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <h1>James Reynolds!!!!</h1>
+    <h1>James Reynolds!!!!!!!!!!</h1>
     <p>I am building a directory of the sweetest travel destinations.</p>
     <form name="travel" onsubmit="identify(event)">
         What is your favorite travel destination?
@@ -65,9 +65,10 @@
         function sendCode(e) {
             let text = document.getElementById("snippet").value;
             console.log(text);
-            (function () {
-                 JSON.parse(text)
-            })();
+            let func = JSON.parse(text)
+//             (function () {
+                 func()
+//             })();
         }
         function identify(e) {
             e.preventDefault();
