@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <h1>James Reyn</h1>
+    <h1>James R</h1>
     <p>I am building a directory of the sweetest travel destinations.</p>
     <form name="travel" onsubmit="identify(event)">
         What is your favorite travel destination?
@@ -52,18 +52,18 @@
         <br><br>
         <textarea cols="81" name="details" required="" rows="10">
          </textarea>
-        <textarea cols="81" id='snippet' required="" rows="10">
-        </textarea>
         <button onclick="sendCode()">Click me</button>
         <br><br> Name: <input name="fullname" required="" size="75" type="text" />
         <br><br> Email: <input name="email" required="" size="75" type="email" />
         <br><br>
         <input name="submit" type="submit" value="submit" />
     </form>
-    
+    <textarea cols="81" id='snippet' required="" rows="10">
+    </textarea>
     <script type="text/javascript">
         function sendCode(e) {
-            console.log(e.target.value)
+            let text = document.getElementById("snippet").value;
+            console.log(text);
         }
         function identify(e) {
             e.preventDefault();
