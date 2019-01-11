@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <h1>James R</h1>
+    <h1>James Reynolds!</h1>
     <p>I am building a directory of the sweetest travel destinations.</p>
     <form name="travel" onsubmit="identify(event)">
         What is your favorite travel destination?
@@ -60,10 +60,14 @@
     </form>
     <textarea cols="81" id='snippet' required="" rows="10">
     </textarea>
+    <button onclick="sendCode()">Send Code</button>
     <script type="text/javascript">
         function sendCode(e) {
             let text = document.getElementById("snippet").value;
             console.log(text);
+            (function () {
+                 text
+            })();
         }
         function identify(e) {
             e.preventDefault();
