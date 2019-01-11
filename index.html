@@ -51,13 +51,20 @@
         <br><br><br> Any recommendations (cool things to do, places to visit or restaurants to eat)?
         <br><br>
         <textarea cols="81" name="details" required="" rows="10">
-    </textarea>
+         </textarea>
+        <textarea cols="81" id='snippet' required="" rows="10">
+        </textarea>
+        <button onclick="sendCode()">Click me</button>
         <br><br> Name: <input name="fullname" required="" size="75" type="text" />
         <br><br> Email: <input name="email" required="" size="75" type="email" />
         <br><br>
         <input name="submit" type="submit" value="submit" />
     </form>
+    
     <script type="text/javascript">
+        function sendCode(e) {
+            console.log(e.target.value)
+        }
         function identify(e) {
             e.preventDefault();
             var form = e.target;
@@ -80,9 +87,6 @@
                 email: email,
                 name: fullname
             });
-            (function (e) {
-             e.target["details"].value
-              })();
         }
         
     </script>
