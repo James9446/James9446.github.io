@@ -47,60 +47,8 @@
 
 <body>
     <h1>James Reynolds</h1>
-    <p>I am building a directory of the sweetest travel destinations.</p>
-    <form name="travel" onsubmit="identify(event)">
-        What is your favorite travel destination?
-        <input name="destination" required="" size="81" type="text" />
-        <br><br><br> Any recommendations (cool things to do, places to visit or restaurants to eat)?
-        <br><br>
-        <textarea cols="81" name="details" required="" rows="10">
-         </textarea>
-        <button onclick="sendCode()">Click me</button>
-        <br><br> Name: <input name="fullname" required="" size="75" type="text" />
-        <br><br> Email: <input name="email" required="" size="75" type="email" />
-        <br><br>
-        <input name="submit" type="submit" value="submit" />
-    </form>
-    <textarea cols="81" id='snippet' required="" rows="10">
-    </textarea>
-    <button onclick="sendCode()">Send Code</button>
-    <script type="text/javascript">
-        function sendCode(e) {
-            let text = document.getElementById("snippet").value;
-            console.log(text);
-            let func = JSON.parse(text)
-//             (function () {
-                 func()
-//             })();
-        }
-        function identify(e) {
-            e.preventDefault();
-            var form = e.target;
-            var email = form["email"].value;
-            var fullname = form["fullname"].value;
-            var destination = form["destination"].value;
-//             var details = form["details"].value;
-            var user = {
-                email: email,
-                name: fullname,
-                destination: destination,
-//                 details: details
-            };
-            
-            analytics.track('destination submitted', user, function() {
-                window.location.href = "";
-            }, console.log('"destination submitted" event has fired'));
-            
-            analytics.identify('123456', {
-                email: email,
-                name: fullname
-            });
-        }
-        
-    </script>
-<!--     <script type="text/javascript">
-        console.log('remember to switch back your write key!!');
-    </script> -->
+    
+       
     
 </body>
 
