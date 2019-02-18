@@ -46,8 +46,9 @@
 </head>
 
 <body>
-    <h1>James Henry Reynolds</h1>
+    <h1>James Reynolds</h1>
     <p id="anony"></p>
+    <p id="user"></p>
     
     <button id="genNum">Generate Number</button>
     <button id="reset">Reset</button>
@@ -77,10 +78,11 @@
         
         // user data
         analytics.ready(() => {
-          document.getElementById("anony").innerHTML = "Anonymous ID: " + analytics.user().anonymousId();
+            document.getElementById("anony").innerHTML = "anonymousId: " + analytics.user().anonymousId();
+            document.getElementById("user").innerHTML = "userId: " + analytics.user().userId || "null";
         })
         
-//         document.getElementById("user").innerHTML = "User ID: " + analytics.user().userId || "null";
+        
     </script>
     
 </body>
