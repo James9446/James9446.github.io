@@ -86,7 +86,10 @@
             let anon = "anonymousId: " + analytics.user().anonymousId();
             let anonDiv = document.getElementById("anony");
             let parentAnonDiv = anonDiv.parentNode;
-            let newAnon = anonDiv.appendChild(anon);
+            let newAnon = document.createElement("P")
+            newAnon.id = "anony"
+            let anon_content = document.createTextNode(anon);
+            newAnon.appendChild(anon_content);
             parentAnonDiv.replaceChild(newAnon, anonDiv)
             
             document.getElementById("user").innerHTML = "userId: null";
