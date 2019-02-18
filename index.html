@@ -46,8 +46,7 @@
 </head>
 
 <body>
-    <div id="anony"></div>
-<!--     <p id="anony"></p> -->
+    <p id="anony"></p>
     <p id="user"></p>
     <p id="traits"></p>
     
@@ -71,7 +70,9 @@
         const resetAnalytics = () => {
             analytics.reset();
             
-            // Reset User Data View
+            // ---=== Reset View ===---
+
+            // Anonymous ID View
             let newAnon = document.createElement("P")
             newAnon.id = "anony"
             let anonText = "anonymousId: " + analytics.user().anonymousId();
@@ -81,8 +82,19 @@
             let anonElement = document.getElementById("anony");
             let parentAnonElement = anonElement.parentNode;
             parentAnonElement.replaceChild(newAnon, anonElement)
+            
+            // User ID View
+            let newUser = document.createElement("P")
+            newUser.id = "user"
+            let userText = "userId: " + analytics.user().id();
+            let user_content = document.createTextNode(userText);
+            newUser.appendChild(user_content);
+            
+            let userElement = document.getElementById("user");
+            let parentUserElement =userElement.parentNode;
+            parentUserElement.replaceChild(newUser, userElement)
 
-            document.getElementById("user").innerHTML = "userId: null";
+            // Trais View
             document.getElementById("traits").innerHTML = "traits: null";
         }
         
@@ -90,8 +102,9 @@
         document.getElementById("genNum").addEventListener("click", getRandomNumber);
         document.getElementById("reset").addEventListener("click", resetAnalytics);
         
-        // User Data View
+        // Initial View
         analytics.ready(() => {
+            // Anonymous ID View
             let newAnon = document.createElement("P")
             newAnon.id = "anony"
             let anonText = "anonymousId: " + analytics.user().anonymousId();
@@ -102,13 +115,35 @@
             let parentAnonElement = anonElement.parentNode;
             parentAnonElement.replaceChild(newAnon, anonElement)
             
-            document.getElementById("user").innerHTML = "userId: null";
+            // User ID View
+            let newUser = document.createElement("P")
+            newUser.id = "user"
+            let userText = "userId: " + analytics.user().id();
+            let user_content = document.createTextNode(userText);
+            newUser.appendChild(user_content);
+            
+            let userElement = document.getElementById("user");
+            let parentUserElement =userElement.parentNode;
+            parentUserElement.replaceChild(newUser, userElement)
+
+            // Trais View
             document.getElementById("traits").innerHTML = "traits: null";
         })
         
         analytics.on('identify', () => {
-            document.getElementById("user").innerHTML = "userId: " + analytics.user().id();
-            document.getElementById("traits").innerHTML = JSON.stringify(analytics.user()._getTraits(), null, ' ');
+            // User ID View
+            let newUser = document.createElement("P")
+            newUser.id = "user"
+            let userText = "userId: " + analytics.user().id();
+            let user_content = document.createTextNode(userText);
+            newUser.appendChild(user_content);
+            
+            let userElement = document.getElementById("user");
+            let parentUserElement =userElement.parentNode;
+            parentUserElement.replaceChild(newUser, userElement)
+
+            // Trais View
+            document.getElementById("traits").innerHTML = "traits: " + JSON.stringify(analytics.user()._getTraits(), null, '\t');
         });
         
     </script>
