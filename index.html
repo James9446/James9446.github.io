@@ -46,6 +46,7 @@
 </head>
 
 <body>
+    <h2>User Info:</h2>
     <p id="anony"></p>
     <p id="user"></p>
     <p id="traits"></p>
@@ -110,6 +111,9 @@
         })
         
         analytics.on('identify', () => {
+            // Anonymous ID View
+            updateView("anony", "anony", "anonymousId: ", "P", analytics.user().anonymousId());
+            
             // User ID View
             updateView("user", "user", "userId: ", "P", analytics.user().id());
 
