@@ -65,7 +65,7 @@
             let content = document.createTextNode(text);
             newElement.appendChild(content);
             
-            let currentElement = document.getElementById(target);
+            let currentElement = document.getElementById(targetId);
             let parentElement = currentElement.parentNode;
             parentElement.replaceChild(newElement, anonElement);
         }
