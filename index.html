@@ -58,7 +58,7 @@
     
     <script>
         // View Control
-        const updateView = (targetId, newId, label, element, method) => {
+        const updateView = (targetId, newId, label, element, method='') => {
             let newElement = document.createElement(element);
             newElement.id = newId
             let text = label + method;
@@ -73,6 +73,7 @@
         const getRandomNumber = () => {
             let random = Math.floor(Math.random() * 10) + 1;
             document.getElementById("num").innerHTML = random;
+            updateView("num", "num", random, "P");
             
             analytics.track('Generate Number', {
                 range: '1 to 10',
@@ -86,10 +87,10 @@
             // ---=== Reset View ===---
 
             // Anonymous ID View
-            updateView("anony", "anony", "anonymousId ", "P", analytics.user().anonymousId());
+            updateView("anony", "anony", "anonymousId: ", "P", analytics.user().anonymousId());
             
             // User ID View
-            updateView("user", "user", "userId ", "P", analytics.user().id());
+            updateView("user", "user", "userId: ", "P", analytics.user().id());
 
             // let newUser = document.createElement("P")
             // newUser.id = "user"
@@ -102,7 +103,8 @@
             // parentUserElement.replaceChild(newUser, userElement)
 
             // Trais View
-            document.getElementById("traits").innerHTML = "traits: null";
+            // document.getElementById("traits").innerHTML = "traits: null";
+            updateView("traits", "traits", "traits: ", "P", JSON.stringify(analytics.user()._getTraits(), null, '\t'));
         }
         
         // Button Event Listeners
@@ -112,21 +114,23 @@
         // Initial View
         analytics.ready(() => {
             // Anonymous ID View
-            updateView("anony", "anony", "anonymousId ", "P", analytics.user().anonymousId());
+            updateView("anony", "anony", "anonymousId: ", "P", analytics.user().anonymousId());
             
             // User ID View
-            updateView("user", "user", "userId ", "P", analytics.user().id());
+            updateView("user", "user", "userId: ", "P", analytics.user().id());
 
             // Trais View
-            document.getElementById("traits").innerHTML = "traits: null";
+            // document.getElementById("traits").innerHTML = "traits: null";
+            updateView("traits", "traits", "traits: ", "P", JSON.stringify(analytics.user()._getTraits(), null, '\t'));
         })
         
         analytics.on('identify', () => {
             // User ID View
-            updateView("user", "user", "userId ", "P", analytics.user().id());
+            updateView("user", "user", "userId: ", "P", analytics.user().id());
 
             // Trais View
-            document.getElementById("traits").innerHTML = "traits: " + JSON.stringify(analytics.user()._getTraits(), null, '\t');
+            // document.getElementById("traits").innerHTML = "traits: " + JSON.stringify(analytics.user()._getTraits(), null, '\t');
+            updateView("traits", "traits", "traits: ", "P", JSON.stringify(analytics.user()._getTraits(), null, '\t'));
         });
         
     </script>
