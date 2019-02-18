@@ -46,7 +46,7 @@
 </head>
 
 <body>
-    <h1>James Henry Reynolds</h1>
+    <h1>James Reynolds</h1>
     <p id="anony"></p>
     <p id="user"></p>
     
@@ -84,7 +84,7 @@
         })
         
         analytics.on('identify', () => {
-            document.getElementById("user").innerHTML = "userId: " + analytics.user().userId();
+            document.getElementById("user").innerHTML = "userId: " + analytics.user().id();
         });
         
     </script>
