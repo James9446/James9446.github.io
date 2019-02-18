@@ -46,7 +46,6 @@
 </head>
 
 <body>
-    <h1>Cookies</h1>
     <p id="anony"></p>
     <p id="user"></p>
     <p id="traits"></p>
@@ -57,7 +56,7 @@
     <p id="num"></p>
     
     <script>
-        // Functions
+        // Button Functions
         const getRandomNumber = () => {
             let random = Math.floor(Math.random() * 10) + 1;
             document.getElementById("num").innerHTML = random;
@@ -70,25 +69,29 @@
         
         const resetAnalytics = () => {
             analytics.reset();
+            
+            // Reset User Data View
             document.getElementById("anony").saferInnerHTML = "anonymousId: " + analytics.user().anonymousId();
             document.getElementById("user").saferInnerHTML = "userId: null";
-            document.getElementById("traits").saferInnerHTML = "traits: null"
+            document.getElementById("traits").saferInnerHTML = "traits: null";
         }
         
-        // Event Listeners
+        // Button Event Listeners
         document.getElementById("genNum").addEventListener("click", getRandomNumber);
         document.getElementById("reset").addEventListener("click", resetAnalytics);
         
-        // User Data
+        // User Data View
         analytics.ready(() => {
+            console.log('analyics.js has loaded');
             document.getElementById("anony").saferInnerHTML = "anonymousId: " + analytics.user().anonymousId();
             document.getElementById("user").saferInnerHTML = "userId: null";
-            document.getElementById("traits").saferInnerHTML = "traits: null"
+            document.getElementById("traits").saferInnerHTML = "traits: null";
+            console.log('no blockers');
         })
         
         analytics.on('identify', () => {
             document.getElementById("user").saferInnerHTML = "userId: " + analytics.user().id();
-            document.getElementById("traits").saferInnerHTML = "traits: " + JSON.stringify(analytics.user()._getTraits());
+            document.getElementById("traits").saferInnerHTML = "traits: " + JSON.stringify(analytics.user()._getTraits(), null, '\t');
         });
         
     </script>
