@@ -82,16 +82,15 @@
         
         // User Data View
         analytics.ready(() => {
-            console.log('analyics.js has loaded');
-            document.getElementById("anony").innerHTML = "anonymousId: " + analytics.user().anonymousId();
+            let anon = "anonymousId: " + analytics.user().anonymousId();
+            document.getElementById("anony").appendChild(anon);
             document.getElementById("user").innerHTML = "userId: null";
             document.getElementById("traits").innerHTML = "traits: null";
-            console.log('no blockers');
         })
         
         analytics.on('identify', () => {
             document.getElementById("user").innerHTML = "userId: " + analytics.user().id();
-            document.getElementById("traits").innerHTML = "traits: " + JSON.stringify(analytics.user()._getTraits(), null, '\t');
+            document.getElementById("traits").innerHTML = "traits: \n" + JSON.stringify(analytics.user()._getTraits(), null, '\t');
         });
         
     </script>
