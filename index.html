@@ -46,7 +46,7 @@
 </head>
 
 <body>
-    <h2>james9446</h2>
+    <h2>james</h2>
     <p id="anony"></p>
     <p id="user"></p>
     <p id="traits"></p>
@@ -58,16 +58,16 @@
     
     <script>
         // View Control
-        const updateAnonymousIdView = () => {
-            let newAnon = document.createElement("P")
-            newAnon.id = "anony"
-            let anonText = "anonymousId: " + analytics.user().anonymousId();
-            let anon_content = document.createTextNode(anonText);
-            newAnon.appendChild(anon_content);
+        const updateView = (targetId, newId, label, element, method) => {
+            let newElement = document.createElement(element);
+            newElement.id = newId
+            let text = label + method;
+            let content = document.createTextNode(text);
+            newElement.appendChild(content);
             
-            let anonElement = document.getElementById("anony");
-            let parentAnonElement = anonElement.parentNode;
-            parentAnonElement.replaceChild(newAnon, anonElement);
+            let currentElement = document.getElementById(target);
+            let parentElement = currentElement.parentNode;
+            parentElement.replaceChild(newElement, anonElement);
         }
         // Button Functions
         const getRandomNumber = () => {
@@ -86,7 +86,7 @@
             // ---=== Reset View ===---
 
             // Anonymous ID View
-            updateAnonymousIdView()
+            updateView("anony", "anony", "anonymousId ", "P", analytics.user().anonymousId());
             
             // User ID View
             let newUser = document.createElement("P")
@@ -110,7 +110,7 @@
         // Initial View
         analytics.ready(() => {
             // Anonymous ID View
-            updateAnonymousIdView();
+            updateView("anony", "anony", "anonymousId ", "P", analytics.user().anonymousId());
             
             // User ID View
             let newUser = document.createElement("P")
