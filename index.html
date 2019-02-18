@@ -46,6 +46,7 @@
 </head>
 
 <body>
+    <h2>james9446</h2>
     <p id="anony"></p>
     <p id="user"></p>
     <p id="traits"></p>
@@ -56,6 +57,18 @@
     <p id="num"></p>
     
     <script>
+        // View Control
+        const updateAnonymousIdView = () => {
+            let newAnon = document.createElement("P")
+            newAnon.id = "anony"
+            let anonText = "anonymousId: " + analytics.user().anonymousId();
+            let anon_content = document.createTextNode(anonText);
+            newAnon.appendChild(anon_content);
+            
+            let anonElement = document.getElementById("anony");
+            let parentAnonElement = anonElement.parentNode;
+            parentAnonElement.replaceChild(newAnon, anonElement);
+        }
         // Button Functions
         const getRandomNumber = () => {
             let random = Math.floor(Math.random() * 10) + 1;
@@ -73,15 +86,7 @@
             // ---=== Reset View ===---
 
             // Anonymous ID View
-            let newAnon = document.createElement("P")
-            newAnon.id = "anony"
-            let anonText = "anonymousId: " + analytics.user().anonymousId();
-            let anon_content = document.createTextNode(anonText);
-            newAnon.appendChild(anon_content);
-            
-            let anonElement = document.getElementById("anony");
-            let parentAnonElement = anonElement.parentNode;
-            parentAnonElement.replaceChild(newAnon, anonElement)
+            updateAnonymousIdView()
             
             // User ID View
             let newUser = document.createElement("P")
@@ -105,15 +110,7 @@
         // Initial View
         analytics.ready(() => {
             // Anonymous ID View
-            let newAnon = document.createElement("P")
-            newAnon.id = "anony"
-            let anonText = "anonymousId: " + analytics.user().anonymousId();
-            let anon_content = document.createTextNode(anonText);
-            newAnon.appendChild(anon_content);
-            
-            let anonElement = document.getElementById("anony");
-            let parentAnonElement = anonElement.parentNode;
-            parentAnonElement.replaceChild(newAnon, anonElement)
+            updateAnonymousIdView();
             
             // User ID View
             let newUser = document.createElement("P")
