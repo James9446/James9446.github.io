@@ -74,8 +74,8 @@
         document.getElementById("reset").addEventListener("click", resetAnalytics);
         
         // user data
-        document.getElementById("anony").innerHTML = "Anonymous ID: " + analytics.user().anonymousId;
-        document.getElementById("user").innerHTML = "User ID: " + analytics.user().userId || "null";
+        document.getElementById("anony").innerHTML = "Anonymous ID: " + analytics.user().anonymousId();
+//         document.getElementById("user").innerHTML = "User ID: " + analytics.user().userId || "null";
     </script>
     
 </body>
