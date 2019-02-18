@@ -46,7 +46,7 @@
 </head>
 
 <body>
-    <h1>James Reynolds</h1>
+    <h1>James Henry Reynolds</h1>
     <p id="anony"></p>
     <p id="user"></p>
     
@@ -58,30 +58,34 @@
     <script>
         // Functions
         const getRandomNumber = () => {
-          let random = Math.floor(Math.random() * 10) + 1;
-          document.getElementById("num").innerHTML = random;
+            let random = Math.floor(Math.random() * 10) + 1;
+            document.getElementById("num").innerHTML = random;
             
-          analytics.track('Generate Number', {
-            range: '1 to 10',
-            number: random
-          });
+            analytics.track('Generate Number', {
+                range: '1 to 10',
+                number: random
+            });
         }
         
         const resetAnalytics = () => {
-          analytics.reset();
-          document.getElementById("anony").innerHTML = "Anonymous ID: " + analytics.user().anonymousId();
+            analytics.reset();
+            document.getElementById("anony").innerHTML = "anonymousId: " + analytics.user().anonymousId();
+            document.getElementById("user").innerHTML = "userId: null";
         }
         
         // Event Listeners
         document.getElementById("genNum").addEventListener("click", getRandomNumber);
         document.getElementById("reset").addEventListener("click", resetAnalytics);
         
-        // user data
+        // User Data
         analytics.ready(() => {
             document.getElementById("anony").innerHTML = "anonymousId: " + analytics.user().anonymousId();
-            document.getElementById("user").innerHTML = "userId: " + analytics.user().userId || "null";
+            document.getElementById("user").innerHTML = "userId: null";
         })
         
+        analytics.on('identify', () => {
+            document.getElementById("user").innerHTML = "userId: " + analytics.user().userId();
+        });
         
     </script>
     
