@@ -71,9 +71,9 @@
             analytics.reset();
             
             // Reset User Data View
-            document.getElementById("anony").saferInnerHTML = "anonymousId: " + analytics.user().anonymousId();
-            document.getElementById("user").saferInnerHTML = "userId: null";
-            document.getElementById("traits").saferInnerHTML = "traits: null";
+            document.getElementById("anony").innerHTML = "anonymousId: " + analytics.user().anonymousId();
+            document.getElementById("user").innerHTML = "userId: null";
+            document.getElementById("traits").innerHTML = "traits: null";
         }
         
         // Button Event Listeners
@@ -83,15 +83,15 @@
         // User Data View
         analytics.ready(() => {
             console.log('analyics.js has loaded');
-            document.getElementById("anony").saferInnerHTML = "anonymousId: " + analytics.user().anonymousId();
-            document.getElementById("user").saferInnerHTML = "userId: null";
-            document.getElementById("traits").saferInnerHTML = "traits: null";
+            document.getElementById("anony").innerHTML = "anonymousId: " + analytics.user().anonymousId();
+            document.getElementById("user").innerHTML = "userId: null";
+            document.getElementById("traits").innerHTML = "traits: null";
             console.log('no blockers');
         })
         
         analytics.on('identify', () => {
-            document.getElementById("user").saferInnerHTML = "userId: " + analytics.user().id();
-            document.getElementById("traits").saferInnerHTML = "traits: " + JSON.stringify(analytics.user()._getTraits(), null, '\t');
+            document.getElementById("user").innerHTML = "userId: " + analytics.user().id();
+            document.getElementById("traits").innerHTML = "traits: " + JSON.stringify(analytics.user()._getTraits(), null, '\t');
         });
         
     </script>
