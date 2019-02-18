@@ -46,7 +46,6 @@
 </head>
 
 <body>
-    <h2>james</h2>
     <p id="anony"></p>
     <p id="user"></p>
     <p id="traits"></p>
@@ -83,8 +82,6 @@
         
         const resetAnalytics = () => {
             analytics.reset();
-            
-            // ---=== Reset View ===---
 
             // Anonymous ID View
             updateView("anony", "anony", "anonymousId: ", "P", analytics.user().anonymousId());
@@ -92,18 +89,7 @@
             // User ID View
             updateView("user", "user", "userId: ", "P", analytics.user().id());
 
-            // let newUser = document.createElement("P")
-            // newUser.id = "user"
-            // let userText = "userId: " + analytics.user().id();
-            // let user_content = document.createTextNode(userText);
-            // newUser.appendChild(user_content);
-            
-            // let userElement = document.getElementById("user");
-            // let parentUserElement =userElement.parentNode;
-            // parentUserElement.replaceChild(newUser, userElement)
-
             // Trais View
-            // document.getElementById("traits").innerHTML = "traits: null";
             updateView("traits", "traits", "traits: ", "P", JSON.stringify(analytics.user()._getTraits(), null, '\t'));
         }
         
@@ -120,7 +106,6 @@
             updateView("user", "user", "userId: ", "P", analytics.user().id());
 
             // Trais View
-            // document.getElementById("traits").innerHTML = "traits: null";
             updateView("traits", "traits", "traits: ", "P", JSON.stringify(analytics.user()._getTraits(), null, '\t'));
         })
         
@@ -129,7 +114,6 @@
             updateView("user", "user", "userId: ", "P", analytics.user().id());
 
             // Trais View
-            // document.getElementById("traits").innerHTML = "traits: " + JSON.stringify(analytics.user()._getTraits(), null, '\t');
             updateView("traits", "traits", "traits: ", "P", JSON.stringify(analytics.user()._getTraits(), null, '\t'));
         });
         
