@@ -45,7 +45,7 @@
 </head>
 
 <body>
-    <h1>James Henry Reynolds</h1>
+    <h1>James Reynolds</h1>
     <h3 id="anony"></h3>
     
     <button id="genNum">Generate Number</button>
@@ -74,7 +74,10 @@
         document.getElementById("reset").addEventListener("click", resetAnalytics);
         
         // user data
-        document.getElementById("anony").innerHTML = "Anonymous ID: " + analytics.user().anonymousId();
+        analytics.ready(() => {
+          document.getElementById("anony").innerHTML = "Anonymous ID: " + analytics.user().anonymousId();
+        })
+        
 //         document.getElementById("user").innerHTML = "User ID: " + analytics.user().userId || "null";
     </script>
     
