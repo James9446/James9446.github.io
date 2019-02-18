@@ -72,7 +72,16 @@
             analytics.reset();
             
             // Reset User Data View
-            document.getElementById("anony").innerHTML = "anonymousId: " + analytics.user().anonymousId();
+            let newAnon = document.createElement("P")
+            newAnon.id = "anony"
+            let anonText = "anonymousId: " + analytics.user().anonymousId();
+            let anon_content = document.createTextNode(anonText);
+            newAnon.appendChild(anon_content);
+            
+            let anonElement = document.getElementById("anony");
+            let parentAnonElement = anonElement.parentNode;
+            parentAnonElement.replaceChild(newAnon, anonElement)
+
             document.getElementById("user").innerHTML = "userId: null";
             document.getElementById("traits").innerHTML = "traits: null";
         }
@@ -99,7 +108,7 @@
         
         analytics.on('identify', () => {
             document.getElementById("user").innerHTML = "userId: " + analytics.user().id();
-            document.getElementById("traits").innerHTML = JSON.stringify(analytics.user()._getTraits(), null, '\t');
+            document.getElementById("traits").innerHTML = JSON.stringify(analytics.user()._getTraits(), null, ' ');
         });
         
     </script>
