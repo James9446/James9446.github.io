@@ -46,8 +46,8 @@
 </head>
 
 <body>
-    <h1>James Reynolds</h1>
-    <h3 id="anony"></h3>
+    <h1>James Henry Reynolds</h1>
+    <p id="anony"></p>
     
     <button id="genNum">Generate Number</button>
     <button id="reset">Reset</button>
@@ -66,13 +66,14 @@
           });
         }
         
-//         const resetAnalytics = () => {
-//           analytics.reset();
-//         }
+        const resetAnalytics = () => {
+          analytics.reset();
+          document.getElementById("anony").innerHTML = "Anonymous ID: " + analytics.user().anonymousId();
+        }
         
         // Event Listeners
         document.getElementById("genNum").addEventListener("click", getRandomNumber);
-        document.getElementById("reset").addEventListener("click", analytics.reset);
+        document.getElementById("reset").addEventListener("click", resetAnalytics);
         
         // user data
         analytics.ready(() => {
