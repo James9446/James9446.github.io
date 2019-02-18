@@ -84,7 +84,11 @@
         // User Data View
         analytics.ready(() => {
             let anon = "anonymousId: " + analytics.user().anonymousId();
-            document.getElementById("anony").appendChild(anon);
+            let anonDiv = document.getElementById("anony");
+            let parentAnonDiv = anonDiv.parentNode;
+            let newAnon = anonDiv.appendChild(anon);
+            parentAnonDiv.replaceChild(newAnon, anonDiv)
+            
             document.getElementById("user").innerHTML = "userId: null";
             document.getElementById("traits").innerHTML = "traits: null";
         })
