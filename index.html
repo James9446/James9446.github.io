@@ -61,8 +61,8 @@
         const updateView = (targetId, newId, label, element, method='') => {
             let newElement = document.createElement(element);
             newElement.id = newId
-            let text = label + method;
-            let content = document.createTextNode(text);
+//             let text = label + method;
+            let content = document.createTextNode(label + method);
             newElement.appendChild(content);
             
             let currentElement = document.getElementById(targetId);
@@ -84,7 +84,7 @@
         // Button Functions
         const getRandomNumber = () => {
             let random = Math.floor(Math.random() * 10) + 1;
-            document.getElementById("num").innerHTML = random;
+//             document.getElementById("num").innerHTML = random;
             updateView("num", "num", random, "P");
             
             analytics.track('Generate Number', {
