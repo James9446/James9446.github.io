@@ -60,8 +60,7 @@
         // View Control
         const updateView = (targetId, newId, label, element, method='') => {
             let newElement = document.createElement(element);
-            newElement.id = newId
-//             let text = label + method;
+            newElement.id = newId;
             let content = document.createTextNode(label + method);
             newElement.appendChild(content);
             
@@ -84,7 +83,6 @@
         // Button Functions
         const getRandomNumber = () => {
             let random = Math.floor(Math.random() * 10) + 1;
-//             document.getElementById("num").innerHTML = random;
             updateView("num", "num", random, "P");
             
             analytics.track('Generate Number', {
