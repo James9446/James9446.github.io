@@ -55,7 +55,7 @@
     <button id="reset">Reset</button>
 
     <p id="num"></p>
-    
+    <p id="event"></p>
     <script>
         // View Control
         const updateView = (targetId, newId, label, element, method='') => {
@@ -111,10 +111,7 @@
         
         // testing
         analytics.on('track', function(event, properties, options) {
-
-            console.log(['recordEvent', event]);
-            console.log('properties', properties);
-            
+            updateView("event", "event", event + " ", "P", JSON.stringify(properties, null, '\t'));
         });
     </script>
     
