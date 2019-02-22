@@ -55,6 +55,7 @@
     <button id="reset">Reset</button>
 
     <p id="num"></p>
+    <div id="track"></div>
     <p id="event"></p>
     <script>
         // View Control
@@ -111,7 +112,8 @@
         
         // testing
         analytics.on('track', function(event, properties, options) {
-            updateView("event", "event", event + " ", "P", JSON.stringify(properties, null, '\t'));
+            updateView("track", "track", "Track Event Name and Properties", "H4")
+            updateView("event", "event", event + "\n", "P", JSON.stringify(properties, null, '\t'));
         });
     </script>
     
