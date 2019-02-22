@@ -57,6 +57,8 @@
     <p id="num"></p>
     <div id="track"></div>
     <p id="event"></p>
+    <p id="prop"></p>
+    
     <script>
         // View Control
         const updateView = (targetId, newId, label, element, method='') => {
@@ -112,8 +114,9 @@
         
         // testing
         analytics.on('track', function(event, properties, options) {
-            updateView("track", "track", "Track Event Name and Properties", "H4")
-            updateView("event", "event", event + "\n", "P", JSON.stringify(properties, null, '\t'));
+            updateView("track", "track", "Track Event", "H4");
+            updateView("event", "event", event, "P");
+            updateView("prop", "prop", JSON.stringify(properties, null, '\t'), "P");
         });
     </script>
     
