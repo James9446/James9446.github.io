@@ -46,7 +46,7 @@
 </head>
 
 <body>
-    <h4>User Info</h4>
+    <h4>User Info:</h4>
     <p id="anony"></p>
     <p id="user"></p>
     <p id="traits"></p>
@@ -109,6 +109,13 @@
             updateAllUserInfo();
         });
         
+        // testing
+        analytics.on('track', function(event, properties, options) {
+
+            console.log(['recordEvent', event]);
+            console.log(['properties', properties);
+            
+        });
     </script>
     
 </body>
