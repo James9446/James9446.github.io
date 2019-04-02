@@ -49,7 +49,7 @@
 <body>
 <!--     <h1>Write key switched</h1> -->
 <!--     <a href="https://app.segment.com/segment-success/sources/javascript12/debugger">Source debugger</a> -->
-    <h1>Extend timeout testing 500ms</h1>
+    <h1>Extend timeout testing method 500ms</h1>
     <h4>User Info</h4>
     <p id="anony"></p>
     <p id="user"></p>
@@ -95,7 +95,7 @@
             analytics.track('Generate Number', {
                 range: '1 to 10',
                 number: random
-            }, analytics.timeout(500));
+            }).timeout(500);
             let y = Date.now();
             console.log('x', x);
             console.log('y', y);
