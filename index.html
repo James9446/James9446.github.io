@@ -49,7 +49,7 @@
 <body>
 <!--     <h1>Write key switched</h1> -->
 <!--     <a href="https://app.segment.com/segment-success/sources/javascript12/debugger">Source debugger</a> -->
-    <h1>Extend timeout testing none</h1>
+    <h1>Extend timeout testing 1000ms</h1>
     <h4>User Info</h4>
     <p id="anony"></p>
     <p id="user"></p>
@@ -100,7 +100,7 @@
                 console.log('x', x);
                 console.log('z', z);
                 console.log('z - x =', z-x);
-            });
+            }).timeout(1000);
             let y = Date.now();
             console.log('x', x);
             console.log('y', y);
