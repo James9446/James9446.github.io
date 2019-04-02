@@ -49,7 +49,7 @@
 <body>
 <!--     <h1>Write key switched</h1> -->
 <!--     <a href="https://app.segment.com/segment-success/sources/javascript12/debugger">Source debugger</a> -->
-    <h1>Extend timeout testing Z 500ms</h1>
+    <h1>Extend timeout testing none</h1>
     <h4>User Info</h4>
     <p id="anony"></p>
     <p id="user"></p>
@@ -96,15 +96,15 @@
                 range: '1 to 10',
                 number: random
             }, () => {
-              let z = Date.now();
-              console.log('x', x);
-              console.log('z', z);
-              console.log('z - x =', z-x);
-            }).timeout(500);
+                let z = Date.now();
+                console.log('x', x);
+                console.log('z', z);
+                console.log('z - x =', z-x);
+            });
             let y = Date.now();
-              console.log('x', x);
-              console.log('y', y);
-              console.log('y - x =', y-x);
+            console.log('x', x);
+            console.log('y', y);
+            console.log('y - x =', y-x);
         }
         
         const resetAnalytics = () => {
