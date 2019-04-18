@@ -79,6 +79,7 @@
     
     <button id="genNum">Generate Number</button>
     <button id="reset">Reset</button>
+    <button id="getOS">Get OS</button>
 
     <p id="num"></p>
     <div id="track"></div>
@@ -125,9 +126,22 @@
             updateAllUserInfo();
         }
         
+        const getOS = () => {
+            var OSName="Unknown OS";
+            if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+            if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+            if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+            if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+            if (navigator.appVersion.indexOf("Android")!=-1) OSName="Android";
+            analytics.track('Get OS', {
+                os: OSName
+            });
+        }
+        
         // Button Event Listeners
         document.getElementById("genNum").addEventListener("click", getRandomNumber);
         document.getElementById("reset").addEventListener("click", resetAnalytics);
+        document.getElementById("getOS").addEventListener("click", getOS);
         
         // Initial View
         analytics.ready(() => {
