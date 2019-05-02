@@ -137,9 +137,9 @@
             if (navigator.appVersion.indexOf("Android")!=-1) OSName="Android";
             if (navigator.appVersion.indexOf("iOS")!=-1) OSName="iOS";
             console.log(`The operating system is ${OSName}`);
-//             analytics.track('Get OS', {
-//                 os: OSName
-//             });
+            analytics.track('Get OS', {
+                os: OSName
+            });
         }
         
         // Button Event Listeners
