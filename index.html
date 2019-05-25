@@ -18,7 +18,13 @@
     </script> -->
 
     <script>  
-        let writeKey = window.location.search.split('=')[1] || "ILiDIXxOYOGpphskZMb42GQTGYrz9AZq";
+        let writeKey;
+        if (window.location.search.split('=')[0] === "?wk") {
+            writeKey = window.location.search.split('=')[1]
+        } else {
+            writeKey = "ILiDIXxOYOGpphskZMb42GQTGYrz9AZq";
+        }
+//         let writeKey = window.location.search.split('=')[1] || "ILiDIXxOYOGpphskZMb42GQTGYrz9AZq";
         console.log('window.location.search', window.location.search);
         console.log('Type OF: window.location.search', typeof(window.location.search));
         console.log('Truthy: window.location.search', !!window.location.search);
