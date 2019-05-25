@@ -85,7 +85,9 @@
     <p id="anony"></p>
     <p id="user"></p>
     <p id="traits"></p>
+    <input type="text" id="myText" value="enter write key">
     
+    <button onclick="myFunction()">Try it</button>
     <button id="genNum">Generate Number</button>
     <button id="reset">Reset</button>
     <button id="getOS">Get OS</button>
@@ -120,6 +122,10 @@
         }
 
         // Button Functions
+        const myFunction = () => {
+            var x = document.getElementById("myText").value;
+            location.replace("https://james9446.github.io/" + x)
+        }
         const getRandomNumber = () => {
             let random = Math.floor(Math.random() * 10) + 1;
             updateView("num", "num", random, "P");
