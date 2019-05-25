@@ -88,9 +88,7 @@
     <p id="anony"></p>
     <p id="user"></p>
     <p id="traits"></p>
-    <input type="text" id="myText" placeholder="enter write key">
     
-    <button onclick="myFunction()">Load Write Key</button>
     <button id="genNum">Generate Number</button>
     <button id="reset">Reset</button>
     <button id="getOS">Get OS</button>
@@ -99,6 +97,9 @@
     <div id="track"></div>
     <p id="event"></p>
     <p id="prop"></p>
+    
+    <input type="text" id="writeKey" placeholder=writeKey>
+    <button id="getWriteKey">Load Write Key</button>
     
     <script>
         // View Control
@@ -125,9 +126,9 @@
         }
 
         // Button Functions
-        const myFunction = () => {
-            var x = document.getElementById("myText").value;
-            location.replace("https://james9446.github.io/?wk=" + x)
+        const getWriteKey = () => {
+            let wk = document.getElementById("writeKey").value;
+            location.replace("https://james9446.github.io/?wk=" + wk)
         }
         const getRandomNumber = () => {
             let random = Math.floor(Math.random() * 10) + 1;
@@ -162,6 +163,7 @@
         document.getElementById("genNum").addEventListener("click", getRandomNumber);
         document.getElementById("reset").addEventListener("click", resetAnalytics);
         document.getElementById("getOS").addEventListener("click", getOS);
+        document.getElementById("getWriteKey").addEventListener("click", getWriteKey);
         
         // Initial View
         analytics.ready(() => {
