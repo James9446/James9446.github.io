@@ -18,7 +18,7 @@
     </script> -->
 
     <script>  
-        let writeKey = window.location.search || "ILiDIXxOYOGpphskZMb42GQTGYrz9AZq";
+        let writeKey = window.location.search.split('=')[1] || "ILiDIXxOYOGpphskZMb42GQTGYrz9AZq";
         console.log('window.location.search', window.location.search);
         console.log('Type OF: window.location.search', typeof(window.location.search));
         console.log('Truthy: window.location.search', !!window.location.search);
@@ -88,7 +88,7 @@
     <p id="anony"></p>
     <p id="user"></p>
     <p id="traits"></p>
-    <input type="text" id="myText" value="enter write key">
+    <input type="text" id="myText" placeholder="enter write key">
     
     <button onclick="myFunction()">Load Write Key</button>
     <button id="genNum">Generate Number</button>
@@ -127,7 +127,7 @@
         // Button Functions
         const myFunction = () => {
             var x = document.getElementById("myText").value;
-            location.replace("https://james9446.github.io/" + x)
+            location.replace("https://james9446.github.io/?wk=" + x)
         }
         const getRandomNumber = () => {
             let random = Math.floor(Math.random() * 10) + 1;
