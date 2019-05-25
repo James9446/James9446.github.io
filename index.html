@@ -94,7 +94,7 @@
     <button id="getOS">Get OS</button>
     
     <p id="writeKeyValue"></p>
-    <input type="text" id="writeKeyInput" placeholder={{writeKey}}>
+    <input type="text" id="writeKeyInput" placeholder=Enter Write Key>
     <button id="getWriteKey">Load Write Key</button>
     
     <p id="num"></p>
@@ -176,7 +176,7 @@
             updateAllUserInfo();
         });
         
-        updateView("writeKeyValue", "writeKeyValue", "Write Key: ", "P", writekey);
+        updateView("writeKeyValue", "writeKeyValue", "Write Key: ", "P", writeKey);
         
         // Display track call
         analytics.on('track', function(event, properties, options) {
