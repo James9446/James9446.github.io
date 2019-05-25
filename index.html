@@ -93,8 +93,8 @@
     <button id="reset">Reset</button>
     <button id="getOS">Get OS</button>
     
-    <p>{{writeKey}}</p>
-    <input type="text" id="writeKey" placeholder={{writeKey}}>
+    <p id="writeKeyValue"></p>
+    <input type="text" id="writeKeyInput" placeholder={{writeKey}}>
     <button id="getWriteKey">Load Write Key</button>
     
     <p id="num"></p>
@@ -129,7 +129,7 @@
 
         // Button Functions
         const getWriteKey = () => {
-            let wk = document.getElementById("writeKey").value;
+            let wk = document.getElementById("writeKeyInput").value;
             location.replace("https://james9446.github.io/?wk=" + wk)
         }
         const getRandomNumber = () => {
@@ -175,6 +175,8 @@
         analytics.on('identify', () => {
             updateAllUserInfo();
         });
+        
+        updateView("writeKeyValue", "writeKeyValue", "Write Key: ", "P", writekey);
         
         // Display track call
         analytics.on('track', function(event, properties, options) {
