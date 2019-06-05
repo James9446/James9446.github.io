@@ -25,36 +25,41 @@
             writeKey = "ILiDIXxOYOGpphskZMb42GQTGYrz9AZq";
         }
 
-        ! function() {
-        var analytics = window.analytics = window.analytics || [];
-        if (!analytics.initialize)
-            if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice.");
-            else {
-                analytics.invoked = !0;
-                analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on"];
-                analytics.factory = function(t) {
-                    return function() {
-                        var e = Array.prototype.slice.call(arguments);
-                        e.unshift(t);
-                        analytics.push(e);
-                        return analytics
-                    }
-                };
-                for (var t = 0; t < analytics.methods.length; t++) {
-                    var e = analytics.methods[t];
-                    analytics[e] = analytics.factory(e)
-                }
-                analytics.load = function(t, e) {
-                    var n = document.createElement("script");
-                    n.type = "text/javascript";
-                    n.async = !0;
-                    n.src = ("https:" === document.location.protocol ? "https://" : "http://") + "cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js";
-                    var o = document.getElementsByTagName("script")[0];
-                    o.parentNode.insertBefore(n, o);
-                    analytics._loadOptions = e
-                };
-                analytics.SNIPPET_VERSION = "4.1.0";
-                analytics.load(writeKey)
+//         ! function() {
+//         var analytics = window.analytics = window.analytics || [];
+//         if (!analytics.initialize)
+//             if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice.");
+//             else {
+//                 analytics.invoked = !0;
+//                 analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on"];
+//                 analytics.factory = function(t) {
+//                     return function() {
+//                         var e = Array.prototype.slice.call(arguments);
+//                         e.unshift(t);
+//                         analytics.push(e);
+//                         return analytics
+//                     }
+//                 };
+//                 for (var t = 0; t < analytics.methods.length; t++) {
+//                     var e = analytics.methods[t];
+//                     analytics[e] = analytics.factory(e)
+//                 }
+//                 analytics.load = function(t, e) {
+//                     var n = document.createElement("script");
+//                     n.type = "text/javascript";
+//                     n.async = !0;
+//                     n.src = ("https:" === document.location.protocol ? "https://" : "http://") + "cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js";
+//                     var o = document.getElementsByTagName("script")[0];
+//                     o.parentNode.insertBefore(n, o);
+//                     analytics._loadOptions = e
+//                 };
+//                 analytics.SNIPPET_VERSION = "4.1.0";
+//                 analytics.load(writeKey)
+        
+                   type="text/javascript"> !function () { var analytics = window.analytics = window.analytics || []; if (!analytics.initialize) if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice."); else { analytics.invoked = !0; analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "page", "once", "off", "on"]; analytics.factory = function (t) { return function () { var e = Array.prototype.slice.call(arguments); e.unshift(t); analytics.push(e); return analytics } }; for (var t = 0; t < analytics.methods.length; t++) { var e = analytics.methods[t]; analytics[e] = analytics.factory(e) } analytics.load = function (t) { var e = document.createElement("script"); e.type = "text/javascript"; e.async = !0; e.src = ("" === document.location.protocol ? "//" : "//") + "cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js"; var n = document.getElementsByTagName("script")[0]; n.parentNode.insertBefore(e, n) }; analytics.SNIPPET_VERSION = "3.1.0"; analytics.load(writeKey); analytics.page() } }();
+        
+        
+        
                 // Success Eng workspace
 //                 analytics.load("ULC4rsrCer83A7OnYtRfimsVfNAeWHm3");
                 
@@ -77,7 +82,7 @@
 </head>
 
 <body>
-    <h3>BT workspace</h3>
+    <h3>New BT workspace</h3>
 <!--     <h3>Legacy Source</h3> -->
     <p><a href="https://app.segment.com/james9446/sources/javascript/debugger" target="_blank">Source debugger</a></p>
     <p><a href="https://github.com/James9446/James9446.github.io" target="_blank">GitHub</a></p>
