@@ -89,7 +89,7 @@
     <a href="https://app.segment.com/james-reynolds_aec9/sources/javascript/debugger">Source debugger</a> -->
     
 <!--     <a href="https://app.segment.com/segment-success/sources/javascript12/debugger">Source debugger</a> -->
-    <h4>User Info</h4>
+    <h4>User Info!</h4>
     <p id="anony"></p>
     <p id="user"></p>
     <p id="traits"></p>
@@ -97,6 +97,7 @@
     <button id="genNum">Generate Number</button>
     <button id="reset">Reset</button>
     <button id="getOS">Get OS</button>
+    <button id="logInt">Log Integrations</button>
     
     <p id="writeKeyValue"></p>
     <input type="text" id="writeKeyInput" placeholder="Enter Write Key">
@@ -168,11 +169,17 @@
             });
         }
         
+        const logInt = () => {
+            analytics.Integrations
+        }
+        
         // Button Event Listeners
         document.getElementById("genNum").addEventListener("click", getRandomNumber);
         document.getElementById("reset").addEventListener("click", resetAnalytics);
         document.getElementById("getOS").addEventListener("click", getOS);
         document.getElementById("getWriteKey").addEventListener("click", getWriteKey);
+        document.getElementById("getInt").addEventListener("click", getInt);
+        
         
         // Initial View
         analytics.ready(() => {
