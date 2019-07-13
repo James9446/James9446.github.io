@@ -97,6 +97,7 @@
     <button id="genNum">Generate Number</button>
     <button id="reset">Reset</button>
     <button id="getOS">Get OS</button>
+    <button id="callIdentify">Get OS</button>
     <button id="logInt">Log Integrations</button>
     
     <p id="writeKeyValue"></p>
@@ -173,11 +174,26 @@
             console.info(analytics.Integrations);
         }
         
+        const callIdentify = () => {
+            analytics.identify("80085", {
+                name: "Luigi Mario",
+                email: "luigi@brothersplumbing.it",
+                address: {
+                    street: "1 Up St",
+                    city: "Toad Town",
+                    state: "Dinosour Land",
+                    postalCode: "94025",
+                    country: "Mushroom Kingdom"
+                }
+            });
+        }
+        
         // Button Event Listeners
         document.getElementById("genNum").addEventListener("click", getRandomNumber);
         document.getElementById("reset").addEventListener("click", resetAnalytics);
         document.getElementById("getOS").addEventListener("click", getOS);
         document.getElementById("getWriteKey").addEventListener("click", getWriteKey);
+        document.getElementById("callIdentify").addEventListener("click", callIdentify);
         document.getElementById("logInt").addEventListener("click", logInt);
         
         
