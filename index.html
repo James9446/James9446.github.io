@@ -15,6 +15,7 @@
         } else {
             writeKey = "ILiDIXxOYOGpphskZMb42GQTGYrz9AZq";
         }
+        
         ! function() {
         var analytics = window.analytics = window.analytics || [];
         if (!analytics.initialize)
@@ -45,9 +46,30 @@
                 };
                 analytics.SNIPPET_VERSION = "4.1.0";
                 analytics.load(writeKey)
-                analytics.page();
+//                 analytics.page();
             }
         }();
+        
+        if (window.location.search.indexof('utm_test') > -1) {
+            let array = window.location.search.split('&');
+          let string = '';
+            for (let i = 0; i < array.length; i++) {
+              if (!array[i].indexof('utm_test') > -1) {
+                string += array[i]
+              }
+            }
+          analytics.page({
+              category: 'Testing',
+              name: 'Destination Form',
+              path: '/',
+              referrer: '',
+              search: string.split('?')[1],
+              title: 'Test Page',
+              url: string
+            });
+        } else {
+          analytics.page();
+        }
     </script>
 </head>
 
