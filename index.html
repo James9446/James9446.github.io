@@ -50,11 +50,11 @@
             }
         }();
         
-        if (window.location.search.indexof('utm_test') > -1) {
+        if (window.location.search.indexOf('utm_test') > -1) {
             let array = window.location.search.split('&');
           let string = '';
             for (let i = 0; i < array.length; i++) {
-              if (!array[i].indexof('utm_test') > -1) {
+              if (!array[i].indexOf('utm_test') > -1) {
                 string += array[i]
               }
             }
@@ -74,7 +74,7 @@
 </head>
 
 <body>
-    <h3>BT workspace</h3>
+    <h3>BT workspace!</h3>
 <!--     <h3>Legacy Source</h3> -->
     <p><a href="https://app.segment.com/james9446/sources/javascript/debugger" target="_blank">Source debugger</a></p>
     <p><a href="https://github.com/James9446/James9446.github.io" target="_blank">GitHub</a></p>
