@@ -10,13 +10,13 @@
 
     <script>  
         let writeKey = "ILiDIXxOYOGpphskZMb42GQTGYrz9AZq";
-//         if (window.location.search.split('=')[0] === "?wk") {
-//             writeKey = window.location.search.split('=')[1]
-//         } else {
-//             writeKey = "ILiDIXxOYOGpphskZMb42GQTGYrz9AZq";
-//         }
+        if (window.location.search.split('=')[0] === "?wk") {
+            writeKey = window.location.search.split('=')[1]
+        } else {
+            writeKey = "ILiDIXxOYOGpphskZMb42GQTGYrz9AZq";
+        }
         
-        let addAnalytics = function() {
+        !function() {
         var analytics = window.analytics = window.analytics || [];
         if (!analytics.initialize)
             if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice.");
@@ -48,8 +48,8 @@
                 analytics.load(writeKey)
                 analytics.page();
             }
-        };
-        addAnalytics()
+        }();
+        
 //         analytics.ready(function(){
 //             var GA_LOCAL_STORAGE_KEY = 'ga:clientId';
 
@@ -70,7 +70,7 @@
 </head>
 
 <body>
-    <h3>BT workspace!</h3>
+    <h3>BT workspace</h3>
 <!--     <h3>Legacy Source</h3> -->
     <p><a href="https://app.segment.com/james9446/sources/javascript/debugger" target="_blank">Source debugger</a></p>
     <p><a href="https://github.com/James9446/James9446.github.io" target="_blank">GitHub</a></p>
@@ -128,12 +128,12 @@
         // Button Functions
         const getWriteKey = () => {
             let wk = document.getElementById("writeKeyInput").value;
-//             if (wk) {
-//                 location.replace("https://james9446.github.io/?wk=" + wk);
-//             }
-           delete window.analytics
-           writeKey = wk;
-           addAnalytics(); 
+            if (wk) {
+                location.replace("https://james9446.github.io/?wk=" + wk);
+            }
+//            delete window.analytics
+//            writeKey = wk;
+//            addAnalytics(); 
         }
         const getRandomNumber = () => {
             let random = Math.floor(Math.random() * 10) + 1;
