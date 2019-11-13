@@ -176,16 +176,17 @@
         
         const callIdentify = (e) => {
             if (e.shiftKey) {
-                console.log(`analytics.identify("80085", {
-                    name: "Luigi Mario",
-                    email: "luigi@brothersplumbing.it",
-                    address: {
-                        street: "1 Up St",
-                        city: "Toad Town",
-                        state: "Dinosour Land",
-                        postalCode: "94025",
-                        country: "Mushroom Kingdom"
-                      }
+                console.log(
+                    `analytics.identify("80085", {
+                        name: "Luigi Mario",
+                        email: "luigi@brothersplumbing.it",
+                        address: {
+                            street: "1 Up St",
+                            city: "Toad Town",
+                            state: "Dinosour Land",
+                            postalCode: "94025",
+                            country: "Mushroom Kingdom"
+                        }
                   });`
                 );
                 return;
