@@ -76,7 +76,7 @@
 </head>
 
 <body>
-    <h3>BT workspace!!!</h3>
+    <h3>BT workspace</h3>
 <!--     <h3>Legacy Source</h3> -->
     <p><a href="https://app.segment.com/james9446/sources/javascript/debugger" target="_blank">Source debugger</a></p>
     <p><a href="https://github.com/James9446/James9446.github.io" target="_blank">GitHub</a></p>
@@ -108,44 +108,44 @@
     
     
     <script>
-        // Algolia code
-        search.addWidget(
-          instantsearch.widgets.hits({
-            clickAnalytics: true,
-            enablePersonalization: true,
-          })
-        );
-        search.addWidget(
-          instantsearch.widgets.hits({
-            container: "#hits",
-            templates: {
-              item: hit => `
-                    <article>
-                      <h3>${instantsearch.highlight({ attribute: "name", hit })}</h3>
-                      <button class="btn-add-to-cart" data-product-clicked-payload='${JSON.stringify(
-                        {
-                          product_id: hit.objectID,
-                          position: hit.__position,
+//         // Algolia code
+//         search.addWidget(
+//           instantsearch.widgets.hits({
+//             clickAnalytics: true,
+//             enablePersonalization: true,
+//           })
+//         );
+//         search.addWidget(
+//           instantsearch.widgets.hits({
+//             container: "#hits",
+//             templates: {
+//               item: hit => `
+//                     <article>
+//                       <h3>${instantsearch.highlight({ attribute: "name", hit })}</h3>
+//                       <button class="btn-add-to-cart" data-product-clicked-payload='${JSON.stringify(
+//                         {
+//                           product_id: hit.objectID,
+//                           position: hit.__position,
 
-                          index: '...',
-                          queryID: hit.__queryID
-                        }
-                      )}'>Add to cart</button>
-                    </article>
-                  `
-            }
-          })
-        );
+//                           index: '...',
+//                           queryID: hit.__queryID
+//                         }
+//                       )}'>Add to cart</button>
+//                     </article>
+//                   `
+//             }
+//           })
+//         );
 
-        document.addEventListener("click", event => {
-          const elem = event.target;
-          if (elem.matches(".btn-add-to-cart")) {
-            const payload = JSON.parse(
-              elem.getAttribute("data-product-clicked-payload")
-            );
-            analytics.track("Product Clicked", payload);
-          }
-        });
+//         document.addEventListener("click", event => {
+//           const elem = event.target;
+//           if (elem.matches(".btn-add-to-cart")) {
+//             const payload = JSON.parse(
+//               elem.getAttribute("data-product-clicked-payload")
+//             );
+//             analytics.track("Product Clicked", payload);
+//           }
+//         });
         
         
         // View Control
