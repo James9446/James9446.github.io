@@ -229,7 +229,7 @@
           length = document.getElementById("lengthInput").value || 16;
           arg = document.getElementById("specialInput").value || "~!@#$%^&*()_+-=[]{}|;:.,?><";
           if (length < 4) {
-            updateView("passwordValue", "passwordValue", "", "P", password.join("Length must be at least 4"));
+            updateView("passwordValue", "passwordValue", "", "P", "Length must be at least 4");
             return console.error("Length must be at least 4")
           }
           const lowercase = ["a","b","c","d","e","f","g","h","i","j","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
