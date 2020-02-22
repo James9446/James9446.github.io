@@ -102,9 +102,10 @@
     <button id="getWriteKey">Load Write Key</button>
     
     <p id="passwordValue"></p>
-    <input type="text" id="lenthInput" placeholder="Specify Length">
-    <input type="text" id="specialInput" placeholder="Specify Special Characters">
     <button id="getPassword">Generate Password</button>
+    <input type="text" id="lengthInput" placeholder="Specify Length">
+    <input type="text" id="specialInput" placeholder="Specify Special Characters">
+    
     
     <p id="num"></p>
     <div id="track"></div>
@@ -223,6 +224,8 @@
         }
         
         function getPassword(length, arg) {
+          console.log("length ", document.getElementById("lengthInput").value))
+          console.log("special ", document.getElementById("specialInput").value))
           length = document.getElementById("lengthInput").value || 16;
           arg = document.getElementById("specialInput").value || "~!@#$%^&*()_+-=[]{}|;:.,?><";
           if (length < 4) {
