@@ -101,6 +101,11 @@
     <input type="text" id="writeKeyInput" placeholder="Enter Write Key">
     <button id="getWriteKey">Load Write Key</button>
     
+    <p id="passwordValue"></p>
+    <input type="text" id="lenthInput" placeholder="Specify Length">
+    <input type="text" id="specialInput" placeholder="Specify Special Characters">
+    <button id="getPassword">Generate Password</button>
+    
     <p id="num"></p>
     <div id="track"></div>
     <p id="event"></p>
@@ -108,34 +113,7 @@
     
     
     <script>
-//         // Algolia code
-//         search.addWidget(
-//           instantsearch.widgets.hits({
-//             clickAnalytics: true,
-//             enablePersonalization: true,
-//           })
-//         );
-//         search.addWidget(
-//           instantsearch.widgets.hits({
-//             container: "#hits",
-//             templates: {
-//               item: hit => `
-//                     <article>
-//                       <h3>${instantsearch.highlight({ attribute: "name", hit })}</h3>
-//                       <button class="btn-add-to-cart" data-product-clicked-payload='${JSON.stringify(
-//                         {
-//                           product_id: hit.objectID,
-//                           position: hit.__position,
-
-//                           index: '...',
-//                           queryID: hit.__queryID
-//                         }
-//                       )}'>Add to cart</button>
-//                     </article>
-//                   `
-//             }
-//           })
-//         );
+//         
 
 //         document.addEventListener("click", event => {
 //           const elem = event.target;
@@ -244,6 +222,66 @@
             });
         }
         
+        function getPassword(length, arg) {
+          length = document.getElementById("lengthInput").value || 16;
+          arg = document.getElementById("specialInput").value || "~!@#$%^&*()_+-=[]{}|;:.,?><";
+          if (length < 4) {
+            return console.error("Length must be at least 4")
+          }
+          const lowercase = ["a","b","c","d","e","f","g","h","i","j","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+          const uppercase = lowercase.join("").toUpperCase().split("");
+          const specialChars = arg.split("").filter(item => item.trim().length);
+          const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+          let hasNumber = false;
+          let hasUpper = false;
+          let hasLower = false;
+          let hasSpecial = false;
+
+          if ( Number(length)) {
+            length = Number(length)
+          } else {
+            return console.error("Enter a valid length for the first argument.")
+          }
+
+          let password = [];
+          let lastChar;
+          for (let i = 0; i < length; i++) {
+            let char = newChar(lowercase, uppercase, numbers, specialChars);
+            if (char !== lastChar) {
+              password.push(char);
+              lastChar = char
+              if (Number(char)) {
+                hasNumber = true
+              }
+              if (lowercase.indexOf(char)> -1) {
+                hasLower = true
+              } 
+              if (uppercase.indexOf(char) > -1) {
+                hasUpper = true
+              }
+              if (specialChars.indexOf(char)> -1) {
+                hasSpecial = true
+              }
+            } else {
+              i--
+            }
+            if (i === length -1 && (!hasNumber || !hasUpper || !hasLower || !hasSpecial)) {
+              hasNumber = false;
+              hasUpper = false;
+              hasLower = false;
+              hasSpecial = false;
+              password = [];
+              i = -1;
+            }
+          }
+          function newChar(lower, upper, nums, specials) {
+            let set = [lower, upper, nums, specials];
+            let pick = set[Math.floor(Math.random() * set.length)];
+            return pick[Math.floor(Math.random() * pick.length)]
+          }
+          updateView("passwordValue", "passwordValue", "", "P", password.join(""));
+        }
+        
         // Button Event Listeners
         document.getElementById("genNum").addEventListener("click", getRandomNumber);
         document.getElementById("reset").addEventListener("click", resetAnalytics);
@@ -251,6 +289,7 @@
         document.getElementById("getWriteKey").addEventListener("click", getWriteKey);
         document.getElementById("callIdentify").addEventListener("click", callIdentify);
         document.getElementById("logInt").addEventListener("click", logInt);
+        document.getElementById("getPassword").addEventListener("click", getPassword);
         
         
         // Initial View
@@ -263,6 +302,8 @@
         });
         
         updateView("writeKeyValue", "writeKeyValue", "Write Key: ", "P", writeKey);
+        
+        updateView("passwordValue", "passwordValue", "", "P", "");
         
         // Display track call
         analytics.on('track', function(event, properties, options) {
