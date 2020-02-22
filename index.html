@@ -103,7 +103,7 @@
     
     <p id="passwordValue"></p>
     <button id="getPassword">Generate Password</button>
-    <input type="text" id="lengthInput" placeholder="Specify Length">
+    <input type="number" id="lengthInput" placeholder="Specify Length">
     <input type="text" id="specialInput" placeholder="Specify Special Characters">
     
     
@@ -229,6 +229,7 @@
           length = document.getElementById("lengthInput").value || 16;
           arg = document.getElementById("specialInput").value || "~!@#$%^&*()_+-=[]{}|;:.,?><";
           if (length < 4) {
+            updateView("passwordValue", "passwordValue", "", "P", password.join("Length must be at least 4"));
             return console.error("Length must be at least 4")
           }
           const lowercase = ["a","b","c","d","e","f","g","h","i","j","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
@@ -305,8 +306,7 @@
         });
         
         updateView("writeKeyValue", "writeKeyValue", "Write Key: ", "P", writeKey);
-        
-        updateView("passwordValue", "passwordValue", "", "P", "");
+  
         
         // Display track call
         analytics.on('track', function(event, properties, options) {
