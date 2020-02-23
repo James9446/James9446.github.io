@@ -289,6 +289,7 @@
         }
         
         const copyPassword = () => {
+            console.log(document.getElementById("passwordValue").value)
             let copyText = document.getElementById("passwordValue").value;
             copyText.select();
             copyText.setSelectionRange(0, 99999);
