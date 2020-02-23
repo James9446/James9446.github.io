@@ -290,7 +290,7 @@
         
         const copyPassword = () => {
             console.log(document.getElementById("passwordValue"))
-            let copyText = document.getElementById("passwordValue").value;
+            let copyText = document.getElementById("passwordValue").textContent;
             copyText.select();
             copyText.setSelectionRange(0, 99999);
             document.execCommand("copy");
