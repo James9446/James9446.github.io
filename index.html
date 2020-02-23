@@ -101,13 +101,12 @@
     <input type="text" id="writeKeyInput" placeholder="Enter Write Key">
     <button id="getWriteKey">Load Write Key</button>
     
-    <p id="passwordValue"></p>
+   
     <button id="getPassword">Generate Password</button>
     <input type="number" id="lengthInput" placeholder="Specify Length">
     <input type="text" id="specialInput" placeholder="Specify Special Characters">
+    <p id="passwordValue"></p>
     
-    
-    <p id="num"></p>
     <div id="track"></div>
     <p id="event"></p>
     <p id="prop"></p>
@@ -162,7 +161,6 @@
         }
         const getRandomNumber = () => {
             let random = Math.floor(Math.random() * 10) + 1;
-            updateView("num", "num", random, "P");
             let x = Date.now();
             analytics.track('Number Generated', {
                 range: '1 to 10',
