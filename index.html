@@ -108,6 +108,7 @@
         <input type="number" id="lengthInput" placeholder="Length">
         <input type="text" id="specialInput" placeholder="Special Characters">
         <p id="passwordValue"></p>
+        <button id="copyPassword"></button>
     </div>
     
     <div id="track"></div>
@@ -224,7 +225,7 @@
             });
         }
         
-        function getPassword(length, arg) {
+        const getPassword = (length, arg) => {
           length = document.getElementById("lengthInput").value || 16;
           arg = document.getElementById("specialInput").value || "~!@#$%^&*()_+-=[]{}|;:.,?><";
           if (length < 4) {
@@ -283,7 +284,16 @@
             return pick[Math.floor(Math.random() * pick.length)]
           }
           updateView("passwordValue", "passwordValue", "", "P", password.join(""));
+          updateView("copyPassword", "copyPassword", "", "button", "copy text");
         }
+        
+        cont copyPassword = () => {
+            let copyText = document.getElementById("passwordValue");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+        };
+        
         
         // Button Event Listeners
         document.getElementById("genNum").addEventListener("click", getRandomNumber);
@@ -293,6 +303,7 @@
         document.getElementById("callIdentify").addEventListener("click", callIdentify);
         document.getElementById("logInt").addEventListener("click", logInt);
         document.getElementById("getPassword").addEventListener("click", getPassword);
+         document.getElementById("copyPassword").addEventListener("click", copyPassword);
         
         
         // Initial View
