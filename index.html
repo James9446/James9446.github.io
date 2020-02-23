@@ -108,7 +108,7 @@
         <input type="number" id="lengthInput" placeholder="Length">
         <input type="text" id="specialInput" placeholder="Special Characters">
         <p id="passwordValue"></p>
-        <button id="copyPassword"></button>
+        <p id="copyPassword"></p>
     </div>
     
     <div id="track"></div>
@@ -285,6 +285,7 @@
           }
           updateView("passwordValue", "passwordValue", "", "P", password.join(""));
           updateView("copyPassword", "copyPassword", "", "button", "copy text");
+          document.getElementById("copyPassword").addEventListener("click", copyPassword);
         }
         
         const copyPassword = () => {
@@ -303,7 +304,6 @@
         document.getElementById("callIdentify").addEventListener("click", callIdentify);
         document.getElementById("logInt").addEventListener("click", logInt);
         document.getElementById("getPassword").addEventListener("click", getPassword);
-         document.getElementById("copyPassword").addEventListener("click", copyPassword);
         
         
         // Initial View
