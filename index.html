@@ -287,7 +287,7 @@
           updateView("copyPassword", "copyPassword", "", "button", "copy text");
         }
         
-        cont copyPassword = () => {
+        const copyPassword = () => {
             let copyText = document.getElementById("passwordValue");
             copyText.select();
             copyText.setSelectionRange(0, 99999);
