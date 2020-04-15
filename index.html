@@ -88,7 +88,7 @@
 </head>
 
 <body>
-    <h3>Reynolds!!</h3>
+    <h3>Reynolds!!!</h3>
 <!--     <h3>Legacy Source</h3> -->
     <p><a href="https://app.segment.com/james9446/sources/javascript/debugger" target="_blank">Source debugger</a></p>
     <p><a href="https://github.com/James9446/James9446.github.io" target="_blank">GitHub</a></p>
@@ -373,7 +373,7 @@
             return {
               container: '#target-container',
               writeKey: writeKey,
-              shouldRequireConsent: inEU,
+              shouldRequireConsent: () => true,
               bannerContent: bannerContent,
               bannerSubContent: bannerSubContent,
               preferencesDialogTitle: preferencesDialogTitle,
