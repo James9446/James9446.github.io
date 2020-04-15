@@ -51,7 +51,7 @@
                     analytics._loadOptions = e
                 };
                 analytics.SNIPPET_VERSION = "4.1.0";
-                analytics.load(writeKey)
+//                 analytics.load(writeKey)
                 analytics.page();
             }
         }();
@@ -100,7 +100,7 @@
 
             return {
               container: '#target-container',
-              writeKey: '<your-segment-write-key>',
+              writeKey: writeKey,
               shouldRequireConsent: inEU,
               bannerContent: bannerContent,
               bannerSubContent: bannerSubContent,
