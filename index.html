@@ -369,12 +369,12 @@
             var cancelDialogTitle = 'Are you sure you want to cancel?'
             var cancelDialogContent =
               'Your preferences have not been saved. By continuing to use our website, you՚re agreeing to our Website Data Collection Policy.'
-            const customCategories = {{
+            const customCategories = {
               'Test Custom': {
                 purpose: 'This category should be for essential destinations but I am testing a new category name instead',
                 integrations: ['Amplitude']
               }
-            }}
+            }
             return {
               container: '#target-container',
               writeKey: writeKey,
