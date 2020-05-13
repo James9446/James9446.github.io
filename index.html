@@ -22,7 +22,9 @@
  analytics.page();
  }}();
 </script> -->
-    <script>
+	
+	
+<!--     <script>
   window.consentManagerConfig = function(exports) {
     var React = exports.React
     var inEU = exports.inEU
@@ -71,7 +73,7 @@ var customCategories = {
 <script
   src="https://unpkg.com/@segment/consent-manager@4.3.0/standalone/consent-manager.js"
   defer
-></script>
+></script> -->
     <script>  
         let writeKey = "ILiDIXxOYOGpphskZMb42GQTGYrz9AZq";
         if (window.location.search.split('=')[0] === "?wk") {
@@ -139,7 +141,7 @@ var customCategories = {
 </head>
 
 <body>
-    <h3>Reynolds!!!</h3>
+    <h3>Reynolds</h3>
 <!--     <h3>Legacy Source</h3> -->
     <p><a href="https://app.segment.com/james9446/sources/javascript/debugger" target="_blank">Source debugger</a></p>
     <p><a href="https://github.com/James9446/James9446.github.io" target="_blank">GitHub</a></p>
@@ -181,7 +183,7 @@ var customCategories = {
     <p id="prop"></p>
     
     
-//     <script>
+     <script>
 //         
 
 //         document.addEventListener("click", event => {
@@ -397,60 +399,55 @@ var customCategories = {
 
 //         });
         
-//         window.consentManagerConfig = function(exports) {
-//             var React = exports.React
-//             var inEU = exports.inEU
+     window.consentManagerConfig = function(exports) {
+    var React = exports.React
+    var inEU = exports.inEU
 
-//             var bannerContent = React.createElement(
-//               'span',
-//               null,
-//               'We use cookies (and other similar technologies) to collect data to improve your experience on our site. By using our website, you՚re agreeing to the collection of data as described in our',
-//               ' ',
-//               React.createElement(
-//                 'a',
-//                 { href: '/docs/legal/website-data-collection-policy/', target: '_blank' },
-//                 'Website Data Collection Policy'
-//               ),
-//               '.'
-//             )
-//             var bannerSubContent = 'You can change your preferences at any time.'
-//             var preferencesDialogTitle = 'Website Data Collection Preferences'
-//             var preferencesDialogContent =
-//               'We use data collected by cookies and JavaScript libraries to improve your browsing experience, analyze site traffic, deliver personalized advertisements, and increase the overall performance of our site.'
-//             var cancelDialogTitle = 'Are you sure you want to cancel?'
-//             var cancelDialogContent =
-//               'Your preferences have not been saved. By continuing to use our website, you՚re agreeing to our Website Data Collection Policy.'
-//             var customCategories = {
-//               'New Category': {
-//                 purpose: 'A new consent category to capture more granular consent groupings',
-//                 integrations: ['Google Adwords (Classic)', 'Amplitude', 'Slack']
-//               }
-//             }
-// //             var customCategories = {
-// //               'Test Custom': {
-// //                 purpose: 'This category should be for essential destinations but I am testing a new category name instead',
-// //                 integrations: ['Amplitude']
-// //               }
-// //             }
-//             return {
-//               container: '#target-container',
-//               writeKey: writeKey,
-//               shouldRequireConsent: () => true,
-// //               implyConsentOnInteraction: inEU,
-//               bannerContent: bannerContent,
-//               bannerSubContent: bannerSubContent,
-//               preferencesDialogTitle: preferencesDialogTitle,
-//               preferencesDialogContent: preferencesDialogContent,
-//               cancelDialogTitle: cancelDialogTitle,
-//               cancelDialogContent: cancelDialogContent
-//             }
-//           }
-        
-//     </script>
-//     <script
-//       src="https://unpkg.com/@segment/consent-manager@4.3.0/standalone/consent-manager.js"
-//       defer
-//     ></script>
+    var bannerContent = React.createElement(
+      'span',
+      null,
+      'We use cookies (and other similar technologies) to collect data to improve your experience on our site. By using our website, you՚re agreeing to the collection of data as described in our',
+      ' ',
+      React.createElement(
+        'a',
+        { href: '/docs/legal/website-data-collection-policy/', target: '_blank' },
+        'Website Data Collection Policy'
+      ),
+      '.'
+    )
+    var bannerSubContent = 'You can change your preferences at any time.'
+    var preferencesDialogTitle = 'Website Data Collection Preferences'
+    var preferencesDialogContent =
+      'We use data collected by cookies and JavaScript libraries to improve your browsing experience, analyze site traffic, deliver personalized advertisements, and increase the overall performance of our site.'
+    var cancelDialogTitle = 'Are you sure you want to cancel?'
+    var cancelDialogContent =
+      'Your preferences have not been saved. By continuing to use our website, you՚re agreeing to our Website Data Collection Policy.'
+var customCategories = {
+  'New Category': {
+    purpose: 'A new consent category to capture more granular consent groupings',
+    integrations: ['Google Adwords (Classic)', 'Amplitude', 'Slack']
+  }
+}
+    
+    return {
+      container: '#target-container',
+      writeKey: 'ILiDIXxOYOGpphskZMb42GQTGYrz9AZq',
+      shouldRequireConsent: inEU,
+      bannerContent: bannerContent,
+      bannerSubContent: bannerSubContent,
+      preferencesDialogTitle: preferencesDialogTitle,
+      preferencesDialogContent: preferencesDialogContent,
+      cancelDialogTitle: cancelDialogTitle,
+	customCategories:customCategories,
+      cancelDialogContent: cancelDialogContent
+    }
+  }
+</script>
+
+<script
+  src="https://unpkg.com/@segment/consent-manager@4.3.0/standalone/consent-manager.js"
+  defer
+></script>  
 </body>
 
 </html>
