@@ -141,7 +141,7 @@ var customCategories = {
 </head>
 
 <body>
-    <h3>Reynolds!!!</h3>
+    <h3>Reynolds!</h3>
 <!--     <h3>Legacy Source</h3> -->
     <p><a href="https://app.segment.com/james9446/sources/javascript/debugger" target="_blank">Source debugger</a></p>
     <p><a href="https://github.com/James9446/James9446.github.io" target="_blank">GitHub</a></p>
@@ -422,12 +422,17 @@ var customCategories = {
     var cancelDialogTitle = 'Are you sure you want to cancel?'
     var cancelDialogContent =
       'Your preferences have not been saved. By continuing to use our website, you՚re agreeing to our Website Data Collection Policy.'
-var customCategories = {
-  'Essential': {
-    purpose: 'A new consent category to capture more granular consent groupings',
-    integrations: ['Amplitude', 'Slack']
-  }
-}
+// 	var customCategories = {
+// 	  'Essential': {
+// 	    purpose: 'This integration is essential',
+// 	    integrations: ['Amplitude', 'Slack']
+// 	  },
+// 	  'Analytics and Marketing': {
+// 	    purpose: 'This integration is essential',
+// 	    integrations: ['Amplitude', 'Slack']
+// 	  }
+
+// 	}
     
     return {
       container: '#target-container',
@@ -438,14 +443,14 @@ var customCategories = {
       preferencesDialogTitle: preferencesDialogTitle,
       preferencesDialogContent: preferencesDialogContent,
       cancelDialogTitle: cancelDialogTitle,
-	customCategories:customCategories,
+//       customCategories: customCategories,
       cancelDialogContent: cancelDialogContent
     }
   }
 </script>
 
 <script
-  src="https://unpkg.com/@segment/consent-manager@4.3.0/standalone/consent-manager.js"
+  src="https://unpkg.com/@segment/consent-manager@5.0.0/standalone/consent-manager.js"
   defer
 ></script>  
 </body>
