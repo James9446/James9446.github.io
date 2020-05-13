@@ -141,7 +141,7 @@ var customCategories = {
 </head>
 
 <body>
-    <h3>Reynolds!</h3>
+    <h3>Reynolds!!</h3>
 <!--     <h3>Legacy Source</h3> -->
     <p><a href="https://app.segment.com/james9446/sources/javascript/debugger" target="_blank">Source debugger</a></p>
     <p><a href="https://github.com/James9446/James9446.github.io" target="_blank">GitHub</a></p>
@@ -422,17 +422,24 @@ var customCategories = {
     var cancelDialogTitle = 'Are you sure you want to cancel?'
     var cancelDialogContent =
       'Your preferences have not been saved. By continuing to use our website, you՚re agreeing to our Website Data Collection Policy.'
-// 	var customCategories = {
-// 	  'Essential': {
-// 	    purpose: 'This integration is essential',
-// 	    integrations: ['Amplitude', 'Slack']
-// 	  },
-// 	  'Analytics and Marketing': {
-// 	    purpose: 'This integration is essential',
-// 	    integrations: ['Amplitude', 'Slack']
-// 	  }
-
-// 	}
+	var customCategories = {
+	  'Functional': {
+	    purpose: 'To monitor the performance of our site and to enhance your browsing experience. For example, these tools enable you to communicate with us via live chat.',
+	    integrations: ['Appcues', 'Salesmachine']
+	  },
+	  'Marketing and Analytics': {
+	    purpose: 'To understand user behavior in order to provide you with a more relevant browsing experience or personalize the content on our site. For example, we collect information about which pages you visit to help us present more relevant information.',
+	    integrations: ['Amazon S3', 'Customer.io', 'Google Analytics']
+	  },
+	  'Advertising': {
+	    purpose: 'To personalize and measure the effectiveness of advertising on our site and other websites. For example, we may serve you a personalized ad based on the pages you visit on our site.',
+	    integrations: ['Amplitude', 'Slack']
+	  },
+	  'Essential': {
+	    purpose: 'This integration is essential',
+	    integrations: ['Amplitude', 'Slack']
+	  }
+	}
     
     return {
       container: '#target-container',
