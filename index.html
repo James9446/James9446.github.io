@@ -7,73 +7,6 @@
     <meta name="description" content="">
     <title>Success Engineering</title>
     <link rel="shortcut icon" type="image/x-icon" href="images/duck.ico"/>
-    <style>
-        #target-container {
-          position: fixed;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          z-index: 100;
-        }
-    </style>
-<!--     <script>
- !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
- analytics.load("B19AspwpmjMKQkjgX9QE1Lw3fGaZlJtl");
- analytics.page();
- }}();
-</script> -->
-	
-	
-<!--     <script>
-  window.consentManagerConfig = function(exports) {
-    var React = exports.React
-    var inEU = exports.inEU
-
-    var bannerContent = React.createElement(
-      'span',
-      null,
-      'We use cookies (and other similar technologies) to collect data to improve your experience on our site. By using our website, you՚re agreeing to the collection of data as described in our',
-      ' ',
-      React.createElement(
-        'a',
-        { href: '/docs/legal/website-data-collection-policy/', target: '_blank' },
-        'Website Data Collection Policy'
-      ),
-      '.'
-    )
-    var bannerSubContent = 'You can change your preferences at any time.'
-    var preferencesDialogTitle = 'Website Data Collection Preferences'
-    var preferencesDialogContent =
-      'We use data collected by cookies and JavaScript libraries to improve your browsing experience, analyze site traffic, deliver personalized advertisements, and increase the overall performance of our site.'
-    var cancelDialogTitle = 'Are you sure you want to cancel?'
-    var cancelDialogContent =
-      'Your preferences have not been saved. By continuing to use our website, you՚re agreeing to our Website Data Collection Policy.'
-var customCategories = {
-  'New Category': {
-    purpose: 'A new consent category to capture more granular consent groupings',
-    integrations: ['Google Adwords (Classic)', 'Amplitude', 'Slack']
-  }
-}
-    
-    return {
-      container: '#target-container',
-      writeKey: 'ILiDIXxOYOGpphskZMb42GQTGYrz9AZq',
-      shouldRequireConsent: inEU,
-      bannerContent: bannerContent,
-      bannerSubContent: bannerSubContent,
-      preferencesDialogTitle: preferencesDialogTitle,
-      preferencesDialogContent: preferencesDialogContent,
-      cancelDialogTitle: cancelDialogTitle,
-	customCategories:customCategories,
-      cancelDialogContent: cancelDialogContent
-    }
-  }
-</script>
-
-<script
-  src="https://unpkg.com/@segment/consent-manager@4.3.0/standalone/consent-manager.js"
-  defer
-></script> -->
     <script>  
         let writeKey = "ILiDIXxOYOGpphskZMb42GQTGYrz9AZq";
         if (window.location.search.split('=')[0] === "?wk") {
@@ -111,48 +44,19 @@ var customCategories = {
                     analytics._loadOptions = e
                 };
                 analytics.SNIPPET_VERSION = "4.1.0";
-//                 analytics.load(writeKey)
+                analytics.load(writeKey)
                 analytics.page();
             }
-        }();
-        
-//         analytics.ready(function(){
-//             var GA_LOCAL_STORAGE_KEY = 'ga:clientId';
-
-//             if (window.localStorage) {
-//               ga('create', 'UA-XXXXX-Y', {
-//                 'storage': 'none',
-//                 'clientId': localStorage.getItem(GA_LOCAL_STORAGE_KEY)
-//               });
-//               ga(function(tracker) {
-//                 localStorage.setItem(GA_LOCAL_STORAGE_KEY, tracker.get('clientId'));
-//               });
-//             }
-//             else {
-//               ga('create', 'UA-XXXXX-Y', 'auto');
-//             }
-//         })
-        
-        
-            
-    </script>
-    
-    
+        }();                   
+    </script>  
 </head>
 
 <body>
-    <h3>Reynolds</h3>
-<!--     <h3>Legacy Source</h3> -->
+    <h3>Reynolds!</h3>
     <p><a href="https://app.segment.com/james9446/sources/javascript/debugger" target="_blank">Source debugger</a></p>
     <p><a href="https://github.com/James9446/James9446.github.io" target="_blank">GitHub</a></p>
     <p><a href="https://irinasayshi.github.io/" target="_blank">Irina's Site</a></p>
     <p><a href="https://irinasayshi.github.io/mainjs.html">Irina's Test Link</a></p>
- 
-<!--     <h1>Testing SS workspace</h1>
-    <a href="https://app.segment.com/james-reynolds_aec9/sources/javascript/debugger">Source debugger</a> -->
-    
-<!--     <a href="https://app.segment.com/segment-success/sources/javascript12/debugger">Source debugger</a> -->
-    <div id="target-container"></div>
     <h4>User Info:</h4>
     <p id="anony"></p>
     <p id="user"></p>
@@ -183,9 +87,7 @@ var customCategories = {
     <p id="prop"></p>
     
     
-     <script>
-        
-
+     <script>     
         document.addEventListener("click", event => {
           const elem = event.target;
           if (elem.matches(".btn-add-to-cart")) {
@@ -194,10 +96,9 @@ var customCategories = {
             );
             analytics.track("Product Clicked", payload);
           }
-        });
+        });       
         
-        
-        View Control
+//      View Control
         const updateView = (targetId, newId, label, element, method='') => {
             let newElement = document.createElement(element);
             newElement.id = newId;
@@ -216,7 +117,7 @@ var customCategories = {
             // User ID View
             updateView("user", "user", "userId: ", "P", analytics.user().id());
 
-            // Trais View
+            // Traits View
             updateView("traits", "traits", "traits: ", "P", JSON.stringify(analytics.user()._getTraits(), null, '\t'));
         }
 
@@ -226,9 +127,6 @@ var customCategories = {
             if (wk) {
                 location.replace("https://james9446.github.io/?wk=" + wk);
             }
-//            delete window.analytics
-//            writeKey = wk;
-//            addAnalytics(); 
         }
         const getRandomNumber = () => {
             let random = Math.floor(Math.random() * 10) + 1;
@@ -398,68 +296,6 @@ var customCategories = {
             console.log('options', options);
 
         });
-        
-//      window.consentManagerConfig = function(exports) {
-//     var React = exports.React
-//     var inEU = exports.inEU
-
-//     var bannerContent = React.createElement(
-//       'span',
-//       null,
-//       'We use cookies (and other similar technologies) to collect data to improve your experience on our site. By using our website, you՚re agreeing to the collection of data as described in our',
-//       ' ',
-//       React.createElement(
-//         'a',
-//         { href: '/docs/legal/website-data-collection-policy/', target: '_blank' },
-//         'Website Data Collection Policy'
-//       ),
-//       '.'
-//     )
-//     var bannerSubContent = 'You can change your preferences at any time.'
-//     var preferencesDialogTitle = 'Website Data Collection Preferences'
-//     var preferencesDialogContent =
-//       'We use data collected by cookies and JavaScript libraries to improve your browsing experience, analyze site traffic, deliver personalized advertisements, and increase the overall performance of our site.'
-//     var cancelDialogTitle = 'Are you sure you want to cancel?'
-//     var cancelDialogContent =
-//       'Your preferences have not been saved. By continuing to use our website, you՚re agreeing to our Website Data Collection Policy.'
-// 	var customCategories = {
-// 	  'Functional': {
-// 	    purpose: 'To monitor the performance of our site and to enhance your browsing experience. For example, these tools enable you to communicate with us via live chat.',
-// 	    integrations: ['Appcues', 'Salesmachine']
-// 	  },
-// 	  'Marketing and Analytics': {
-// 	    purpose: 'To understand user behavior in order to provide you with a more relevant browsing experience or personalize the content on our site. For example, we collect information about which pages you visit to help us present more relevant information.',
-// 	    integrations: ['Amazon S3', 'Customer.io', 'Google Analytics']
-// 	  },
-// 	  'Advertising': {
-// 	    purpose: 'To personalize and measure the effectiveness of advertising on our site and other websites. For example, we may serve you a personalized ad based on the pages you visit on our site.',
-// 	    integrations: []
-// 	  },
-// 	  'Essential': {
-// 	    purpose: 'This integration is essential',
-// 	    integrations: ['Amplitude', 'Slack']
-// 	  }
-// 	}
-    
-//     return {
-//       container: '#target-container',
-//       writeKey: writeKey,
-//       shouldRequireConsent: () => true,
-//       bannerContent: bannerContent,
-//       bannerSubContent: bannerSubContent,
-//       preferencesDialogTitle: preferencesDialogTitle,
-//       preferencesDialogContent: preferencesDialogContent,
-//       cancelDialogTitle: cancelDialogTitle,
-//       customCategories: customCategories,
-//       cancelDialogContent: cancelDialogContent
-//     }
-//   }
 </script>
-
-// <script
-//   src="https://unpkg.com/@segment/consent-manager@5.0.0/standalone/consent-manager.js"
-//   defer
-// ></script>  
 </body>
-
 </html>
