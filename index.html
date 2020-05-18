@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <title>Success Engineering</title>
     <link rel="shortcut icon" type="image/x-icon" href="images/duck.ico"/>
-    <script>
+<!--     <script>
       window.consentManagerConfig = function(exports) {
         var React = exports.React
         var inEU = exports.inEU
@@ -49,7 +49,7 @@
     <script
       src="https://unpkg.com/@segment/consent-manager@5.0.0/standalone/consent-manager.js"
       defer
-    ></script>
+    ></script> -->
     <script>  
         let writeKey = "ILiDIXxOYOGpphskZMb42GQTGYrz9AZq";
         if (window.location.search.split('=')[0] === "?wk") {
@@ -87,7 +87,7 @@
                     analytics._loadOptions = e
                 };
                 analytics.SNIPPET_VERSION = "4.1.0";
-//                 analytics.load(writeKey)
+                analytics.load(writeKey)
                 analytics.page();
             }
         }();                   
@@ -131,7 +131,7 @@
     <p id="prop"></p>
     
     
-<!--      <script>     
+     <script>     
         document.addEventListener("click", event => {
           const elem = event.target;
           if (elem.matches(".btn-add-to-cart")) {
@@ -340,6 +340,6 @@
             console.log('options', options);
 
         });
-</script> -->
+</script>
 </body>
 </html>
