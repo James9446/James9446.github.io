@@ -2,356 +2,54 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <meta name="description" content="">
-    <title>Success Engineering</title>
-    <link rel="shortcut icon" type="image/x-icon" href="images/duck.ico"/>
-     
-    <!--   start of  Oribi tracking -->
-<!--     <script type="application/javascript">
-        (function(b,o,n,g,s,r,c){if(b[s])return;b[s]={};b[s].scriptToken="XzI5MDYyODg5NA";b[s].callsQueue=[];b[s].api=function(){b[s].callsQueue.push(arguments);};r=o.createElement(n);c=o.getElementsByTagName(n)[0];r.async=1;r.src=g;r.id=s+n;c.parentNode.insertBefore(r,c);})(window,document,"script","https://cdn.oribi.io/XzI5MDYyODg5NA/oribi.js","ORIBI");
-    </script> -->
-    <!--   end of Oribi tracking script -->
-    
-<!--     <script>
-      window.consentManagerConfig = function(exports) {
-        var React = exports.React
-        var inEU = exports.inEU
-
-        var bannerContent = React.createElement(
-          'span',
-          null,
-          'We use cookies (and other similar technologies) to collect data to improve your experience on our site. By using our website, you՚re agreeing to the collection of data as described in our',
-          ' ',
-          React.createElement(
-            'a',
-            { href: '/docs/legal/website-data-collection-policy/', target: '_blank' },
-            'Website Data Collection Policy'
-          ),
-          '.'
-        )
-        var bannerSubContent = 'You can change your preferences at any time.'
-        var preferencesDialogTitle = 'Website Data Collection Preferences'
-        var preferencesDialogContent =
-          'We use data collected by cookies and JavaScript libraries to improve your browsing experience, analyze site traffic, deliver personalized advertisements, and increase the overall performance of our site.'
-        var cancelDialogTitle = 'Are you sure you want to cancel?'
-        var cancelDialogContent =
-          'Your preferences have not been saved. By continuing to use our website, you՚re agreeing to our Website Data Collection Policy.'
-
-        return {
-          container: '#target-container',
-          writeKey: 'ILiDIXxOYOGpphskZMb42GQTGYrz9AZq',
-          shouldRequireConsent: () => true,
-          bannerContent: bannerContent,
-          bannerSubContent: bannerSubContent,
-          preferencesDialogTitle: preferencesDialogTitle,
-          preferencesDialogContent: preferencesDialogContent,
-          cancelDialogTitle: cancelDialogTitle,
-          cancelDialogContent: cancelDialogContent
-        }
-      }
-    </script>
-
-    <script
-      src="https://unpkg.com/@segment/consent-manager@5.0.0/standalone/consent-manager.js"
-      defer
-    ></script> -->
-    <script>  
-        let writeKey = "ILiDIXxOYOGpphskZMb42GQTGYrz9AZq";
-        if (window.location.search.split('=')[0] === "?wk") {
-            writeKey = window.location.search.split('=')[1]
-        } else {
-            writeKey = "ILiDIXxOYOGpphskZMb42GQTGYrz9AZq";
-        }
-        
-        !function() {
-        var analytics = window.analytics = window.analytics || [];
-        if (!analytics.initialize)
-            if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice.");
-            else {
-                analytics.invoked = !0;
-                analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on"];
-                analytics.factory = function(t) {
-                    return function() {
-                        var e = Array.prototype.slice.call(arguments);
-                        e.unshift(t);
-                        analytics.push(e);
-                        return analytics
-                    }
-                };
-                for (var t = 0; t < analytics.methods.length; t++) {
-                    var e = analytics.methods[t];
-                    analytics[e] = analytics.factory(e)
-                }
-                analytics.load = function(t, e) {
-                    var n = document.createElement("script");
-                    n.type = "text/javascript";
-                    n.async = !0;
-                    n.src = ("https:" === document.location.protocol ? "https://" : "http://") + "cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js";
-                    var o = document.getElementsByTagName("script")[0];
-                    o.parentNode.insertBefore(n, o);
-                    analytics._loadOptions = e
-                };
-                analytics.SNIPPET_VERSION = "4.1.0";
-                analytics.load(writeKey)
-                analytics.page();
-            }
-        }();                   
-    </script>  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="">
+  <title>Success Engineering</title>
+  <link rel="shortcut icon" type="image/x-icon" href="images/duck.ico"/>
+  <script src='./js/analytics.js'></script>  
 </head>
 
 <body>
-    <h3>Reynolds</h3>
-    <div id="target-container"></div>
-    <p><a href="https://app.segment.com/james9446/sources/javascript/debugger" target="_blank">Source debugger</a></p>
-    <p><a href="https://github.com/James9446/James9446.github.io" target="_blank">GitHub</a></p>
-    <p><a href="https://irinasayshi.github.io/" target="_blank">Irina's Site</a></p>
-    <p><a href="https://irinasayshi.github.io/mainjs.html">Irina's Test Link</a></p>
-    <h4>User Info:</h4>
-    <p id="anony"></p>
-    <p id="user"></p>
-    <p id="traits"></p>
-    
-    <button id="genNum">Generate Number</button>
-    <button id="reset">Reset</button>
-    <button id="getOS">Get OS</button>
-    <button id="callIdentify">Identify</button>
-    <button id="logInt">Log Integrations</button>
-    
-    <div>
-        <p id="writeKeyValue"></p>
-        <input type="text" id="writeKeyInput" placeholder="Enter Write Key">
-        <button id="getWriteKey">Load Write Key</button>
-    </div>
-    
-    <div>
-        <button id="getPassword">Generate Password</button>
-        <input type="number" id="lengthInput" placeholder="Length">
-        <input type="text" id="specialInput" placeholder="Special Characters">
-        <p id="passwordValue"></p>
-        <p id="copyPassword"></p>
-    </div>
-    
-    <div id="track"></div>
-    <p id="event"></p>
-    <p id="prop"></p>
-    
-    
-     <script>     
-        document.addEventListener("click", event => {
-          const elem = event.target;
-          if (elem.matches(".btn-add-to-cart")) {
-            const payload = JSON.parse(
-              elem.getAttribute("data-product-clicked-payload")
-            );
-            analytics.track("Product Clicked", payload);
-          }
-        });       
-        
-//      View Control
-        const updateView = (targetId, newId, label, element, method='') => {
-            let newElement = document.createElement(element);
-            newElement.id = newId;
-            let content = document.createTextNode(label + method);
-            newElement.appendChild(content);
-            
-            let currentElement = document.getElementById(targetId);
-            let parentElement = currentElement.parentNode;
-            parentElement.replaceChild(newElement, currentElement);
-        }
-
-        const updateAllUserInfo = () => {
-            // Anonymous ID View
-            updateView("anony", "anony", "anonymousId: ", "P", analytics.user().anonymousId());
-            
-            // User ID View
-            updateView("user", "user", "userId: ", "P", analytics.user().id());
-
-            // Traits View
-            updateView("traits", "traits", "traits: ", "P", JSON.stringify(analytics.user()._getTraits(), null, '\t'));
-        }
-
-        // Button Functions
-        const getWriteKey = () => {
-            let wk = document.getElementById("writeKeyInput").value;
-            if (wk) {
-                location.replace("https://james9446.github.io/?wk=" + wk);
-            }
-        }
-        const getRandomNumber = () => {
-            let random = Math.floor(Math.random() * 10) + 1;
-            let x = Date.now();
-            analytics.track('Number Generated', {
-                range: '1 to 10',
-                number: random
-            });
-        }
-        
-        const resetAnalytics = () => {
-            analytics.reset();
-            updateAllUserInfo();
-        }
-        
-        const getOS = () => {
-            var OSName="Unknown OS";
-            if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
-            if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
-            if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
-            if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
-            if (navigator.appVersion.indexOf("Android")!=-1) OSName="Android";
-            if (navigator.appVersion.indexOf("iOS")!=-1) OSName="iOS";
-            console.log(`The operating system is ${OSName}`);
-            analytics.track('Get OS', {
-                os: OSName
-            });
-        }
-        
-        const logInt = () => {
-            console.info(analytics.Integrations);
-        }
-        
-        const callIdentify = (e) => {
-            if (e.shiftKey) {
-                console.log(
-                    `analytics.identify("80085", {
-                        name: "Luigi Mario",
-                        email: "luigi@brothersplumbing.it",
-                        address: {
-                            street: "1 Up St",
-                            city: "Toad Town",
-                            state: "Dinosour Land",
-                            postalCode: "94025",
-                            country: "Mushroom Kingdom"
-                        }
-                  });`
-                );
-                return;
-            }
-            analytics.identify("80085", {
-                name: "Luigi Mario",
-                email: "luigi@brothersplumbing.it",
-                address: {
-                    street: "1 Up St",
-                    city: "Toad Town",
-                    state: "Dinosour Land",
-                    postalCode: "94025",
-                    country: "Mushroom Kingdom"
-                }
-            });
-        }
-        
-        const getPassword = (length, arg) => {
-          length = document.getElementById("lengthInput").value || 16;
-          arg = document.getElementById("specialInput").value || "~!@#$%^&*()_+-=[]{}|;:.,?><";
-          if (length < 4) {
-            updateView("passwordValue", "passwordValue", "", "P", "Length must be at least 4");
-            return console.error("Length must be at least 4")
-          }
-          const lowercase = ["a","b","c","d","e","f","g","h","i","j","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-          const uppercase = lowercase.join("").toUpperCase().split("");
-          const specialChars = arg.split("").filter(item => item.trim().length);
-          const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-          let hasNumber = false;
-          let hasUpper = false;
-          let hasLower = false;
-          let hasSpecial = false;
-
-          if ( Number(length)) {
-            length = Number(length)
-          } else {
-            return console.error("Enter a valid length for the first argument.")
-          }
-
-          let password = [];
-          let lastChar;
-          for (let i = 0; i < length; i++) {
-            let char = newChar(lowercase, uppercase, numbers, specialChars);
-            if (char !== lastChar) {
-              password.push(char);
-              lastChar = char
-              if (Number(char)) {
-                hasNumber = true
-              }
-              if (lowercase.indexOf(char)> -1) {
-                hasLower = true
-              } 
-              if (uppercase.indexOf(char) > -1) {
-                hasUpper = true
-              }
-              if (specialChars.indexOf(char)> -1) {
-                hasSpecial = true
-              }
-            } else {
-              i--
-            }
-            if (i === length -1 && (!hasNumber || !hasUpper || !hasLower || !hasSpecial)) {
-              hasNumber = false;
-              hasUpper = false;
-              hasLower = false;
-              hasSpecial = false;
-              password = [];
-              i = -1;
-            }
-          }
-          function newChar(lower, upper, nums, specials) {
-            let set = [lower, upper, nums, specials];
-            let pick = set[Math.floor(Math.random() * set.length)];
-            return pick[Math.floor(Math.random() * pick.length)]
-          }
-          updateView("passwordValue", "passwordValue", "", "P", password.join(""));
-          updateView("copyPassword", "copyPassword", "", "button", "copy text");
-          document.getElementById("copyPassword").addEventListener("click", copyPassword);
-        }
-        
-        const copyPassword = () => {
-            let text = document.getElementById("passwordValue").textContent;
-            navigator.clipboard.writeText(text);
-        };
-        
-        
-        // Button Event Listeners
-        document.getElementById("genNum").addEventListener("click", getRandomNumber);
-        document.getElementById("reset").addEventListener("click", resetAnalytics);
-        document.getElementById("getOS").addEventListener("click", getOS);
-        document.getElementById("getWriteKey").addEventListener("click", getWriteKey);
-        document.getElementById("callIdentify").addEventListener("click", callIdentify);
-        document.getElementById("logInt").addEventListener("click", logInt);
-        document.getElementById("getPassword").addEventListener("click", getPassword);
-        
-        
-        // Initial View
-        analytics.ready(() => {
-            updateAllUserInfo();
-        })
-        
-        analytics.on('identify', () => {
-            updateAllUserInfo();
-        });
-        
-        updateView("writeKeyValue", "writeKeyValue", "Write Key: ", "P", writeKey);
+  <h3>Reynolds</h3>
+  <div id="target-container"></div>
+  <p><a href="https://app.segment.com/james9446/sources/javascript/debugger" target="_blank">Source debugger</a></p>
+  <p><a href="https://github.com/James9446/James9446.github.io" target="_blank">GitHub</a></p>
+  <h4>User Info:</h4>
+  <p id="anony"></p>
+  <p id="user"></p>
+  <p id="traits"></p>
   
-        
-        // Display track call
-        analytics.on('track', function(event, properties, options) {
-            updateView("track", "track", "Track Event", "H4");
-            updateView("event", "event", event, "P");
-            updateView("prop", "prop", JSON.stringify(properties, null, '\t'), "P");
-            updateAllUserInfo();
-        });   
-        
-        analytics.on('track', function(event, properties, options) {
+  <select id="dropdown">
+    <option value="orderCompleted">Order Completed</option>
+    <option value="productAdded">Product Added</option>
+  </select>
 
-            console.log('event', event);
-            console.log('properties', properties);
-            console.log('options', options);
-
-        });
-         
-        analytics.ready(() => {
-             console.log('Ready');
-             console.log('userId:', analytics.user().id())
-        })
-</script>
+  <button id="fireEvent">Fire Event</button>
+  <button id="genNum">Generate Number</button>
+  <button id="reset">Reset</button>
+  <button id="getOS">Get OS</button>
+  <button id="callIdentify">Identify</button>
+  <button id="logInt">Log Integrations</button>
+  
+  <div>
+    <p id="writeKeyValue"></p>
+    <input type="text" id="writeKeyInput" placeholder="Enter Write Key">
+    <button id="getWriteKey">Load Write Key</button>
+  </div>
+  
+  <div>
+    <button id="getPassword">Generate Password</button>
+    <input type="number" id="lengthInput" placeholder="Length">
+    <input type="text" id="specialInput" placeholder="Special Characters">
+    <p id="passwordValue"></p>
+    <p id="copyPassword"></p>
+  </div>
+  
+  <div id="track"></div>
+  <p id="event"></p>
+  <p id="prop"></p>
+  
+  <script src='./js/main.js'></script>
 </body>
 </html>
