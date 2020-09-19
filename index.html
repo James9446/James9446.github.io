@@ -20,18 +20,29 @@
   <p id="user"></p>
   <p id="traits"></p>
   
-  <select id="dropdown">
-    <option value="orderCompleted">Order Completed</option>
-    <option value="productAdded">Product Added</option>
-  </select>
-
-  <button id="fireEvent">Fire Event</button>
-  <button id="genNum">Generate Number</button>
-  <button id="reset">Reset</button>
-  <button id="getOS">Get OS</button>
-  <button id="callIdentify">Identify</button>
-  <button id="logInt">Log Integrations</button>
+  <div>
+    <button id="callIdentify">Identify</button>
+    <button id="reset">Reset</button>
+    <!-- <button id="genNum">Generate Number</button> -->
+    <!-- <button id="getOS">Get OS</button> -->
+  </div>
+  <p></p>
+  <div>
+    <select id="dropdown">
+      <option value="orderCompleted">Order Completed</option>
+      <option value="productAdded">Product Added</option>
+    </select>
+    <button id="fireEvent">Fire Event</button>
+  </div>
   
+  
+  <div id="track">
+    <p id="event"></p>
+    <p id="prop"></p>
+  </div>
+  
+  <button id="logInt">Log Integrations</button>
+
   <div>
     <p id="writeKeyValue"></p>
     <input type="text" id="writeKeyInput" placeholder="Enter Write Key">
@@ -45,10 +56,6 @@
     <p id="passwordValue"></p>
     <p id="copyPassword"></p>
   </div>
-  
-  <div id="track"></div>
-  <p id="event"></p>
-  <p id="prop"></p>
   
   <script src='./js/main.js'></script>
 </body>

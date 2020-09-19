@@ -28,7 +28,7 @@ const updateAllUserInfo = () => {
   updateView("user", "user", "userId: ", "P", analytics.user().id());
 
   // Traits View
-  updateView("traits", "traits", "traits: ", "P", JSON.stringify(analytics.user()._getTraits(), null, '\t'));
+  updateView("traits", "traits", "traits: ", "p", JSON.stringify(analytics.user()._getTraits(), null, '\t'));
 }
 
 // Button Functions
@@ -177,9 +177,9 @@ const copyPassword = () => {
 
 
 // Button Event Listeners
-document.getElementById("genNum").addEventListener("click", getRandomNumber);
+// document.getElementById("genNum").addEventListener("click", getRandomNumber);
 document.getElementById("reset").addEventListener("click", resetAnalytics);
-document.getElementById("getOS").addEventListener("click", getOS);
+// document.getElementById("getOS").addEventListener("click", getOS);
 document.getElementById("getWriteKey").addEventListener("click", getWriteKey);
 document.getElementById("callIdentify").addEventListener("click", callIdentify);
 document.getElementById("logInt").addEventListener("click", logInt);
@@ -201,9 +201,9 @@ updateView("writeKeyValue", "writeKeyValue", "Write Key: ", "P", writeKey);
 
 // Display track call
 analytics.on('track', function(event, properties, options) {
-  updateView("track", "track", "Track Event", "H4");
-  updateView("event", "event", event, "P");
-  updateView("prop", "prop", JSON.stringify(properties, null, '\t'), "P");
+  // updateView("track", "track", "Track Event Fired", "H4");
+  updateView("event", "event", "Event Fired: " + event, "P");
+  // updateView("prop", "prop", JSON.stringify(properties, null, '\t'), "textArea");
   updateAllUserInfo();
 });   
 
