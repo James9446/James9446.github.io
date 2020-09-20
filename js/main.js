@@ -32,6 +32,14 @@ const updateAllUserInfo = () => {
 }
 
 // Button Functions
+const fireEvent = (e) => {
+  let event = ecommerceEvents[document.getElementById("dropdown").value]
+  if (e.shiftKey) {
+    return console.log(`analytics.track(${JSON.stringify(event.eventName)}, ${JSON.stringify(event.properties, null, ' ')})`);
+  }
+  analytics.track(event.eventName, event.properties)
+}
+
 const getWriteKey = () => {
   let wk = document.getElementById("writeKeyInput").value;
   if (wk) {
@@ -97,14 +105,6 @@ const callIdentify = (e) => {
       country: "Mushroom Kingdom"
     }
   });
-}
-
-const fireEvent = (e) => {
-  let event = ecommerceEvents[document.getElementById("dropdown").value]
-  if (e.shiftKey) {
-    return console.log(`analytics.track(${JSON.stringify(event.eventName)}, ${JSON.stringify(event.eventBody, null, ' ')})`);
-  }
-  analytics.track(event.eventName, event.eventBody)
 }
 
 const getPassword = () => {
@@ -215,64 +215,7 @@ analytics.on('track', function(event, properties, options) {
 
 });
   
-analytics.ready(() => {
-  console.log('Ready');
-  console.log('userId:', analytics.user().id())
-});
-
-let ecommerceEvents = {}
-ecommerceEvents.orderCompleted = {
-  eventName: "Order Completed",
-  eventBody: {
-    checkout_id: 'fksdjfsdjfisjf9sdfjsd9f',
-    order_id: '50314b8e9bcf000000000000',
-    affiliation: 'Google Store',
-    total: 27.50,
-    subtotal: 22.50,
-    revenue: 25.00,
-    shipping: 3,
-    tax: 2,
-    discount: 2.5,
-    coupon: 'hasbros',
-    currency: 'USD',
-    products: [
-      {
-        product_id: '507f1f77bcf86cd799439011',
-        sku: '45790-32',
-        name: 'Monopoly: 3rd Edition',
-        price: 19,
-        quantity: 1,
-        category: 'Games',
-        url: 'https://www.example.com/product/path',
-        image_url: 'https:///www.example.com/product/path.jpg'
-      },
-      {
-        product_id: '505bd76785ebb509fc183733',
-        sku: '46493-32',
-        name: 'Uno Card Game',
-        price: 3,
-        quantity: 2,
-        category: 'Games'
-      }
-    ]
-  }
-};
-
-ecommerceEvents.productAdded = {
-  eventName: "Product Added",
-  eventBody: {
-    cart_id: 'skdjsidjsdkdj29j',
-    product_id: '507f1f77bcf86cd799439011',
-    sku: 'G-32',
-    category: 'Games',
-    name: 'Monopoly: 3rd Edition',
-    brand: 'Hasbro',
-    variant: '200 pieces',
-    price: 18.99,
-    quantity: 1,
-    coupon: 'MAYDEALS',
-    position: 3,
-    url: 'https://www.example.com/product/path',
-    image_url: 'https://www.example.com/product/path.jpg'
-  }
-};
+// analytics.ready(() => {
+//   console.log('Ready');
+//   console.log('userId:', analytics.user().id())
+// });
