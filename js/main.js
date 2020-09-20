@@ -1,17 +1,8 @@
-document.addEventListener("click", event => {
-  const elem = event.target;
-  if (elem.matches(".btn-add-to-cart")) {
-    const payload = JSON.parse(
-      elem.getAttribute("data-product-clicked-payload")
-    );
-    analytics.track("Product Clicked", payload);
-  }
-});       
-
-//      View Control
+ //      View Control
 const updateView = (targetId, newId, label, element, method='') => {
   let newElement = document.createElement(element);
   newElement.id = newId;
+  
   let content = document.createTextNode(label + method);
   newElement.appendChild(content);
   
@@ -33,11 +24,19 @@ const updateAllUserInfo = () => {
 
 // Button Functions
 const fireEvent = (e) => {
-  let event = ecommerceEvents[document.getElementById("dropdown").value]
+  let event = ecommerceEvents[document.getElementById("eventDropdown").value];
   if (e.shiftKey) {
     return console.log(`analytics.track(${JSON.stringify(event.eventName)}, ${JSON.stringify(event.properties, null, ' ')})`);
   }
   analytics.track(event.eventName, event.properties)
+}
+
+const callIdentify = (e) => {
+  let user = users[document.getElementById("usersDropdown").value];
+  if (e.shiftKey) {
+    return console.log(`analytics.identify(${JSON.stringify(user.userId)}, ${JSON.stringify(user.traits, null, ' ')})`);
+  }
+  analytics.identify(user.userId, user.traits);
 }
 
 const getWriteKey = () => {
@@ -46,65 +45,14 @@ const getWriteKey = () => {
       location.replace("https://james9446.github.io/?wk=" + wk);
   }
 }
-const getRandomNumber = () => {
-  let random = Math.floor(Math.random() * 10) + 1;
-  let x = Date.now();
-  analytics.track('Number Generated', {
-    range: '1 to 10',
-    number: random
-  });
-}
 
 const resetAnalytics = () => {
     analytics.reset();
     updateAllUserInfo();
 }
 
-const getOS = () => {
-  var OSName="Unknown OS";
-  if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
-  if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
-  if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
-  if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
-  if (navigator.appVersion.indexOf("Android")!=-1) OSName="Android";
-  if (navigator.appVersion.indexOf("iOS")!=-1) OSName="iOS";
-  console.log(`The operating system is ${OSName}`);
-  analytics.track('Get OS', {
-    os: OSName
-  });
-}
-
 const logInt = () => {
   console.info(analytics.Integrations);
-}
-
-const callIdentify = (e) => {
-  if (e.shiftKey) {
-    return console.log(
-      `analytics.identify("80085", {
-        name: "Luigi Mario",
-        email: "luigi@brothersplumbing.it",
-        address: {
-          street: "1 Up St",
-          city: "Toad Town",
-          state: "Dinosour Land",
-          postalCode: "94025",
-          country: "Mushroom Kingdom"
-        }
-      });`
-    );
-  }
-  analytics.identify("80085", {
-    name: "Luigi Mario",
-    email: "luigi@brothersplumbing.it",
-    address: {
-      street: "1 Up St",
-      city: "Toad Town",
-      state: "Dinosour Land",
-      postalCode: "94025",
-      country: "Mushroom Kingdom"
-    }
-  });
 }
 
 const getPassword = () => {
@@ -117,7 +65,7 @@ const getPassword = () => {
   const lowercase = ["a","b","c","d","e","f","g","h","i","j","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
   const uppercase = lowercase.join("").toUpperCase().split("");
   const specialChars = arg.split("").filter(item => item.trim().length);
-  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   let hasNumber = false;
   let hasUpper = false;
   let hasLower = false;
@@ -163,7 +111,7 @@ const getPassword = () => {
   function newChar(lower, upper, nums, specials) {
     let set = [lower, upper, nums, specials];
     let pick = set[Math.floor(Math.random() * set.length)];
-    return pick[Math.floor(Math.random() * pick.length)]
+    return pick[Math.floor(Math.random() * pick.length)];
   }
   updateView("passwordValue", "passwordValue", "", "P", password.join(""));
   updateView("copyPassword", "copyPassword", "", "button", "copy text");
@@ -177,9 +125,7 @@ const copyPassword = () => {
 
 
 // Button Event Listeners
-// document.getElementById("genNum").addEventListener("click", getRandomNumber);
 document.getElementById("reset").addEventListener("click", resetAnalytics);
-// document.getElementById("getOS").addEventListener("click", getOS);
 document.getElementById("getWriteKey").addEventListener("click", getWriteKey);
 document.getElementById("callIdentify").addEventListener("click", callIdentify);
 document.getElementById("logInt").addEventListener("click", logInt);
@@ -219,3 +165,26 @@ analytics.on('track', function(event, properties, options) {
 //   console.log('Ready');
 //   console.log('userId:', analytics.user().id())
 // });
+
+// const getRandomNumber = () => {
+//   let random = Math.floor(Math.random() * 10) + 1;
+//   let x = Date.now();
+//   analytics.track('Number Generated', {
+//     range: '1 to 10',
+//     number: random
+//   });
+// }
+
+// const getOS = () => {
+//   var OSName="Unknown OS";
+//   if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+//   if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+//   if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+//   if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+//   if (navigator.appVersion.indexOf("Android")!=-1) OSName="Android";
+//   if (navigator.appVersion.indexOf("iOS")!=-1) OSName="iOS";
+//   console.log(`The operating system is ${OSName}`);
+//   analytics.track('Get OS', {
+//     os: OSName
+//   });
+// }
