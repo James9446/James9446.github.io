@@ -153,13 +153,13 @@ analytics.on('track', function(event, properties, options) {
   updateAllUserInfo();
 });   
 
-analytics.on('track', function(event, properties, options) {
+// analytics.on('track', function(event, properties, options) {
 
-  console.log('event', event);
-  console.log('properties', properties);
-  console.log('options', options);
+//   console.log('event', event);
+//   console.log('properties', properties);
+//   console.log('options', options);
 
-});
+// });
   
 // analytics.ready(() => {
 //   console.log('Ready');
