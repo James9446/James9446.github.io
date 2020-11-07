@@ -1,5 +1,5 @@
  //      View Control
-const updateView = (targetId, newId, label, element, method='') => {
+const updateView = (targetId, newId, label, element, method='', addElement) => {
   let newElement = document.createElement(element);
   newElement.id = newId;
   
@@ -8,18 +8,22 @@ const updateView = (targetId, newId, label, element, method='') => {
   
   let currentElement = document.getElementById(targetId);
   let parentElement = currentElement.parentNode;
-  parentElement.replaceChild(newElement, currentElement);
+  if (addElement) {
+    parentElement.appendChild(newElement, currentElement);
+  } else {
+    parentElement.replaceChild(newElement, currentElement);
+  }
 }
 
 const updateAllUserInfo = () => {
   // Anonymous ID View
-  updateView("anony", "anony", "anonymousId: ", "P", analytics.user().anonymousId());
+  updateView("anony", "anony", "", "P", analytics.user().anonymousId());
   
   // User ID View
-  updateView("user", "user", "userId: ", "P", analytics.user().id());
+  updateView("user", "user", "", "P", analytics.user().id());
 
   // Traits View
-  updateView("traits", "traits", "traits: ", "p", JSON.stringify(analytics.user()._getTraits(), null, '\t'));
+  updateView("traits", "traits", "", "p", JSON.stringify(analytics.user()._getTraits(), null, '\t'));
 }
 
 // Button Functions
@@ -30,6 +34,15 @@ const fireEvent = (e) => {
   }
   analytics.track(event.eventName, event.properties)
 }
+
+const eventFunnel = (e) => {
+  let events = funnels[e.target.id];
+  for (let i = 0; i < events.length; i++) {
+    let event = ecommerceEvents[events[i]];
+    analytics.track(event.eventName, event.properties);
+  }
+}
+
 
 const callIdentify = (e) => {
   let user = users[document.getElementById("usersDropdown").value];
@@ -131,6 +144,7 @@ document.getElementById("callIdentify").addEventListener("click", callIdentify);
 document.getElementById("logInt").addEventListener("click", logInt);
 document.getElementById("getPassword").addEventListener("click", getPassword);
 document.getElementById("fireEvent").addEventListener("click", fireEvent);
+document.getElementById("funnel").addEventListener("click", eventFunnel);
 
 
 // Initial View
@@ -148,7 +162,7 @@ updateView("writeKeyValue", "writeKeyValue", "Write Key: ", "P", writeKey);
 // Display track call
 analytics.on('track', function(event, properties, options) {
   // updateView("track", "track", "Track Event Fired", "H4");
-  updateView("event", "event", "Event Fired: " + event, "P");
+  updateView("event", "event", event, "P", '', true);
   // updateView("prop", "prop", JSON.stringify(properties, null, '\t'), "textArea");
   updateAllUserInfo();
 });   
