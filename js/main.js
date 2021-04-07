@@ -23,7 +23,7 @@ const updateAllUserInfo = () => {
   updateView("user", "user", "", "P", analytics.user().id());
 
   // Traits View
-  updateView("traits", "traits", "", "p", JSON.stringify(analytics.user()._getTraits(), null, '\t'));
+  updateView("traits", "traits", "", "p", JSON.stringify(analytics.user().traits(), null, '\t'));
 }
 
 // Button Functions
