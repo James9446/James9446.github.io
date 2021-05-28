@@ -44,7 +44,7 @@ if (!analytics.initialize)
 
     analytics.addSourceMiddleware(mw);
         
-        analytics.SNIPPET_VERSION = "4.1.0";
+        analytics.SNIPPET_VERSION = "4.13.0";
         analytics.load(writeKey)
         analytics.page();
     }
