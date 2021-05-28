@@ -34,16 +34,6 @@ if (!analytics.initialize)
             analytics._loadOptions = e
         };
         
-        const mw = function({payload, next, integrations, context}) {
-            console.log('middleware fired', payload.obj);
-            console.log('payload.obj.messageId', payload.obj.messageId);
-//             payload.obj.messageId = "message_id_modified12345"
-
-            next(payload);
-        };
-
-    analytics.addSourceMiddleware(mw);
-        
         analytics.SNIPPET_VERSION = "4.13.0";
         analytics.load(writeKey)
         analytics.page();
