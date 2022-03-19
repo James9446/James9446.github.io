@@ -150,7 +150,21 @@ document.getElementById("funnel").addEventListener("click", eventFunnel);
 // Initial View
 analytics.ready(() => {
   updateAllUserInfo();
+  hbspt.forms.create({
+   region: "na1",
+   portalId: "21231932",
+   formId: "d000eed0-eae2-496b-862c-162334695925"
+  });
 });
+
+// <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/shell.js"></script>
+// <script>
+//   hbspt.forms.create({
+// 	region: "na1",
+// 	portalId: "21231932",
+// 	formId: "d000eed0-eae2-496b-862c-162334695925"
+// });
+// </script>
 
 analytics.on('identify', () => {
   updateAllUserInfo();
