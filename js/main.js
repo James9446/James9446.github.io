@@ -166,7 +166,8 @@ analytics.ready(() => {
    portalId: "21231932",
    formId: "d000eed0-eae2-496b-862c-162334695925"
   });
- document.getElementById("hsForm_d000eed0-eae2-496b-862c-162334695925").addEventListener("submit", createEventsFromHubSpotForm);
+ document.getElementByClassName("hs-button primary large")[0].addEventListener("submit", createEventsFromHubSpotForm);
+//  document.getElementById("hsForm_d000eed0-eae2-496b-862c-162334695925").addEventListener("submit", createEventsFromHubSpotForm);
 });
 
 // <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/shell.js"></script>
