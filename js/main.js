@@ -136,6 +136,17 @@ const copyPassword = () => {
   navigator.clipboard.writeText(text);
 };
 
+// HubSpot Form Submission Events
+const createEventsFromHubSpotForm = () => {
+  const firstName = document.getElementById("firstname-d000eed0-eae2-496b-862c-162334695925").value;
+  const lastName = document.getElementById("lastname-d000eed0-eae2-496b-862c-162334695925").value;
+  const email = document.getElementById("email-d000eed0-eae2-496b-862c-162334695925").value;
+  const phone = document.getElementById("phone-d000eed0-eae2-496b-862c-162334695925").value;
+  const companyName = document.getElementById("company-d000eed0-eae2-496b-862c-162334695925").value;
+  const country = document.getElementById("country-d000eed0-eae2-496b-862c-162334695925").value;
+  cosnole.log('For Submitted');
+  console.log(firstName, lastName);
+};
 
 // Button Event Listeners
 document.getElementById("reset").addEventListener("click", resetAnalytics);
@@ -155,6 +166,7 @@ analytics.ready(() => {
    portalId: "21231932",
    formId: "d000eed0-eae2-496b-862c-162334695925"
   });
+ document.getElementById("hsForm_d000eed0-eae2-496b-862c-162334695925").addEventListener("submit", createEventsFromHubSpotForm);
 });
 
 // <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/shell.js"></script>
