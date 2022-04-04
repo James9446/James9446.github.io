@@ -168,7 +168,7 @@ analytics.ready(() => {
   });
   
   // testing load time tracking
- (function() { var interval = setInterval(sendTrack, 200); function sendTrack() { if (performance.timing.domComplete != 0){ var loadTime = (performance.timing.domComplete - performance.timing.navigationStart) / 1000; analytics.track('Page Load', { 'Load Time': loadTime }); clearInterval(interval); } } })();
+//  (function() { var interval = setInterval(sendTrack, 200); function sendTrack() { if (performance.timing.domComplete != 0){ var loadTime = (performance.timing.domComplete - performance.timing.navigationStart) / 1000; analytics.track('Page Load', { 'Load Time': loadTime }); clearInterval(interval); } } })();
 
  
 //  document.getElementByClassName("hs-button primary large")[0].addEventListener("submit", createEventsFromHubSpotForm);
