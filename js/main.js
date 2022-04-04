@@ -1,5 +1,3 @@
- var interval = setInterval(sendTrack, 200);
-
 //      View Control
 const updateView = (targetId, newId, label, element, method='', addElement) => {
   let newElement = document.createElement(element);
@@ -170,8 +168,9 @@ analytics.ready(() => {
   });
   
   // testing load time tracking
-  (function() { function sendTrack() { if (performance.timing.domComplete != 0){ var loadTime = (performance.timing.domComplete - performance.timing.navigationStart) / 1000; analytics.track('Load Time', { 'Load Time': loadTime }); clearInterval(interval); } } })(); 
+ (function() { var interval = setInterval(sendTrack, 200); function sendTrack() { if (performance.timing.domComplete != 0){ var loadTime = (performance.timing.domComplete - performance.timing.navigationStart) / 1000; analytics.track('Page Load', { 'Load Time': loadTime }); clearInterval(interval); } } })();
 
+ 
 //  document.getElementByClassName("hs-button primary large")[0].addEventListener("submit", createEventsFromHubSpotForm);
 //  document.getElementById("hsForm_d000eed0-eae2-496b-862c-162334695925").addEventListener("submit", createEventsFromHubSpotForm);
 });
