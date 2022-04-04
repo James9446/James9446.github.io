@@ -1,4 +1,6 @@
- //      View Control
+(function() { var interval = setInterval(sendTrack, 200); function sendTrack() { if (performance.timing.domComplete != 0){ var loadTime = (performance.timing.domComplete - performance.timing.navigationStart) / 1000; analytics.track('Load Time', { 'Load Time': loadTime }); clearInterval(interval); } } })(); 
+
+//      View Control
 const updateView = (targetId, newId, label, element, method='', addElement) => {
   let newElement = document.createElement(element);
   newElement.id = newId;
