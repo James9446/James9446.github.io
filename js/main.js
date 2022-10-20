@@ -159,7 +159,7 @@ document.getElementById("funnel").addEventListener("click", eventFunnel);
 
 
 // Initial View
-analytics.ready(function() {
+analytics.ready(() => {
   updateAllUserInfo();
 //   hbspt.forms.create({
 //    region: "na1",
