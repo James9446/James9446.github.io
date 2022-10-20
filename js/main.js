@@ -159,13 +159,13 @@ document.getElementById("funnel").addEventListener("click", eventFunnel);
 
 
 // Initial View
-analytics.ready(() => {
+// analytics.ready(() => {
   updateAllUserInfo();
-  hbspt.forms.create({
-   region: "na1",
-   portalId: "21231932",
-   formId: "d000eed0-eae2-496b-862c-162334695925"
-  });
+//   hbspt.forms.create({
+//    region: "na1",
+//    portalId: "21231932",
+//    formId: "d000eed0-eae2-496b-862c-162334695925"
+//   });
   
   // testing load time tracking
 //  (function() { var interval = setInterval(sendTrack, 200); function sendTrack() { if (performance.timing.domComplete != 0){ var loadTime = (performance.timing.domComplete - performance.timing.navigationStart) / 1000; analytics.track('Page Load', { 'Load Time': loadTime }); clearInterval(interval); } } })();
