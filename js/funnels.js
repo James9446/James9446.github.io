@@ -43,3 +43,13 @@ funnels.funnel = [
   "orderCompleted"
 ];
 
+funnels.demo_events = [
+  "productViewed",
+  "productAdded",
+  "cartViewed",
+  "identify",
+  "checkoutStarted",
+  "paymentInfoEntered",
+  "orderCompleted"
+];
+
