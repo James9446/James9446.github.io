@@ -35,13 +35,72 @@ const fireEvent = (e) => {
   analytics.track(event.eventName, event.properties)
 }
 
-const eventFunnel = (e) => {
-  let events = funnels[e.target.id];
-  for (let i = 0; i < events.length; i++) {
-    let event = ecommerceEvents[events[i]];
-    analytics.track(event.eventName, event.properties);
-  }
+// const eventFunnel = (e) => {
+//   console.log(e.target.id)
+//   let eventList = funnels[e.target.id];
+//   let events = ecommerceEvents;
+//   if (e.target.id === 'demo_events') {
+//     events = demo_events;
+//   }
+//   for (let i = 0; i < events.length; i++) {
+//     let event = events[eventList[i]];
+//     analytics.track(event.eventName, event.properties);
+//   }
+// }
+
+// const eventFunnel = (e) => {
+//   let eventList = funnels[e.target.id];
+//   let events = ecommerceEvents;
+//   if (e.target.id === 'demo_events') {
+//     events = demoEvents;
+//   }
+//   for (let i = 0; i < eventList.length; i++) {
+//     let event = ecommerceEvents[eventList[i]];
+//     setTimeout(
+//       () => { 
+//         analytics.track(event.eventName, event.properties); 
+//       }
+//       , 9000);
+//   }
+// }
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+const eventFunnel = (e) => {
+  let eventList = funnels[e.target.id];
+  let events = ecommerceEvents;
+  if (e.target.id === 'demo_events') {
+    events = demoEvents;
+  }
+  for (let i = 0; i < eventList.length; i++) {
+    sleep(i * 1500).then(() => { 
+      if ( eventList[i] === 'identify') {
+        callIdentify(e);
+      } else {
+          let event = events[eventList[i]];
+          analytics.track(event.eventName, event.properties); 
+        }
+      });
+  }
+};
+
+const demoPageFunnel = (e) => {
+  console.log(e.target.id);
+  const pageList = pages[e.target.id];
+  for (i = 0; i < pageList.length; i++) {
+    let page = pageList[i];
+
+    sleep(i * 6000).then(() => { 
+      analytics.page(page.name, {
+        title: page.title
+      }, {
+        campaign: page.utm
+      });
+    })
+
+  }
+};
 
 
 const callIdentify = (e) => {
@@ -156,6 +215,8 @@ document.getElementById("logInt").addEventListener("click", logInt);
 document.getElementById("getPassword").addEventListener("click", getPassword);
 document.getElementById("fireEvent").addEventListener("click", fireEvent);
 document.getElementById("funnel").addEventListener("click", eventFunnel);
+document.getElementById("demo_pages").addEventListener("click", demoPageFunnel);
+document.getElementById("demo_events").addEventListener("click", eventFunnel);
 
 
 // Initial View

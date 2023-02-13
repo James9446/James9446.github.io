@@ -1,5 +1,20 @@
 let users = {};
 
+users.james = {
+  userId: "3059446",
+  traits: {
+    first_name: "James",
+    last_name: "Reynolds",
+    email: "james.reynolds@gmailx.com",
+    address: {
+      street: "101 Spear St",
+      city: "San Francisco",
+      state: "CA",
+      postalCode: "94105"
+    }
+  }
+};
+
 users.luigi = {
   userId: "80085",
   traits: {

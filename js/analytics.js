@@ -36,6 +36,6 @@ if (!analytics.initialize)
         
         analytics.SNIPPET_VERSION = "4.13.0";
         analytics.load(writeKey)
-        analytics.page();
+        // analytics.page();
     }
 }();  
