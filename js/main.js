@@ -260,6 +260,18 @@ analytics.on('track', function(event, properties, options) {
   updateAllUserInfo();
 });   
 
+// Display Page call
+analytics.on('page', function(event, properties, options) {
+  // updateView("track", "track", "Track Event Fired", "H4");
+  console.log("event", event);
+  console.log("properties", properties);
+  console.log("options", options);
+  updateView("event", "event", `Page Viewed: ${properties || options.title}`, "P", '', true);
+  // updateView("prop", "prop", JSON.stringify(properties, null, '\t'), "textArea");
+  updateAllUserInfo();
+}); 
+
+
 // analytics.on('track', function(event, properties, options) {
 
 //   console.log('event', event);
