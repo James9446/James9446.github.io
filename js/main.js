@@ -207,6 +207,26 @@ const copyPassword = () => {
 //   console.log(firstName, lastName);
 // };
 
+// ---- FRIENDBUY CODE SECTION START ----
+const fBuyTrackCustomer = (e) => {
+  let user = users[document.getElementById("usersDropdown").value];
+  if (e.shiftKey) {
+    return console.log(`analytics.identify(${JSON.stringify(user.userId)}, ${JSON.stringify(user.traits, null, ' ')})`);
+  }
+  friendbuyAPI.push([
+    "track",
+    "customer",
+    {
+      email: user.traits.email,
+      id: user.userId, 
+      firstName: user.traits.first_name, 
+      lastName: user.traits.last_name 
+    },
+  ]);
+}
+
+// ---- FRIENDBUY CODE SECTION END ----
+
 // Button Event Listeners
 document.getElementById("reset").addEventListener("click", resetAnalytics);
 document.getElementById("getWriteKey").addEventListener("click", getWriteKey);
@@ -217,6 +237,7 @@ document.getElementById("fireEvent").addEventListener("click", fireEvent);
 document.getElementById("funnel").addEventListener("click", eventFunnel);
 document.getElementById("demo_pages").addEventListener("click", demoPageFunnel);
 document.getElementById("demo_events").addEventListener("click", eventFunnel);
+document.getElementById("fbuy-customer").addEventListener("click", fBuyTrackCustomer);
 
 
 // Initial View
