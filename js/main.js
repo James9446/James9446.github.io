@@ -245,6 +245,7 @@ const fBuyTrackCustomer = (e) => {
 }
 
 function fBuyTrackPage() {
+  console.log("fBuy Track Page");
   friendbuyAPI.push([
     "track",
     "page",
@@ -255,6 +256,7 @@ function fBuyTrackPage() {
 }
 
 function fBuyTrackPurchase() {
+  console.log("fBuy Track Purchase");
   let user = getUserData();
   let products = ecommerceEvents["Order Completed"].products;
   friendbuyAPI.push([
@@ -272,6 +274,7 @@ function fBuyTrackPurchase() {
 }
 
 function fBuyTrackSignUp() {
+  console.log("fBuy Track Sign Up");
   let user = getUserData();
   friendbuyAPI.push([
     "track",
