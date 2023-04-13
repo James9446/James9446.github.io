@@ -208,11 +208,29 @@ const copyPassword = () => {
 // };
 
 // ---- FRIENDBUY CODE SECTION START ----
+
+function getUserData() {
+  return users[document.getElementById("usersDropdown").value];
+};
+
 const fBuyTrackCustomer = (e) => {
-  let user = users[document.getElementById("usersDropdown").value];
+  let user = getUserData();
   if (e.shiftKey) {
-    return console.log(`analytics.identify(${JSON.stringify(user.userId)}, ${JSON.stringify(user.traits, null, ' ')})`);
+    // return console.log(`analytics.identify(${JSON.stringify(user.userId)}, ${JSON.stringify(user.traits, null, ' ')})`);
+    return console.log(
+      `friendbuyAPI.push([
+        "track",
+        "customer",
+        {
+          email: ${JSON.stringify(user.traits.email)},
+          id: ${JSON.stringify(user.userId)}, 
+          firstName: ${JSON.stringify(user.traits.first_name)}, 
+          lastName: ${JSON.stringify(user.traits.last_name)} 
+        },
+      ]);`
+    );
   }
+
   friendbuyAPI.push([
     "track",
     "customer",
@@ -223,7 +241,49 @@ const fBuyTrackCustomer = (e) => {
       lastName: user.traits.last_name 
     },
   ]);
+
 }
+
+function fBuyTrackPage() {
+  friendbuyAPI.push([
+    "track",
+    "page",
+    {
+      name: "Home",
+    }
+  ]);
+}
+
+function fBuyTrackPurchase() {
+  let user = getUserData();
+  let products = ecommerceEvents["Order Completed"].products;
+  friendbuyAPI.push([
+    "track",
+    "purchase",
+    {
+      id: crypto.randomUUID(),
+      amount: 22,
+      currency: "USD", 
+      isNewCustomer: true, 
+      couponCode: "code001",   
+      products,
+    }
+  ]);
+}
+
+function fBuyTrackSignUp() {
+  let user = getUserData();
+  friendbuyAPI.push([
+    "track",
+    "customer",
+    {
+      email: user.traits.email,
+      id: user.userId, 
+      name: `${user.traits.first_name} ${user.traits.last_name}` 
+    },
+  ]);
+}
+
 
 // ---- FRIENDBUY CODE SECTION END ----
 
@@ -238,6 +298,10 @@ document.getElementById("funnel").addEventListener("click", eventFunnel);
 document.getElementById("demo_pages").addEventListener("click", demoPageFunnel);
 document.getElementById("demo_events").addEventListener("click", eventFunnel);
 document.getElementById("fbuy-customer").addEventListener("click", fBuyTrackCustomer);
+document.getElementById("fbuy-page").addEventListener("click", fBuyTrackPage);
+document.getElementById("fbuy-purchase").addEventListener("click", fBuyTrackPurchase);
+// document.getElementById("fbuy-product").addEventListener("click", );
+document.getElementById("fbuy-sign-up").addEventListener("click", fBuyTrackSignUp);
 
 
 // Initial View
