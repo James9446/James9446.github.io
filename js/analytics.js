@@ -1,4 +1,4 @@
-let writeKey = "brNTPh2Btwo5nFDvbUkacXYbBJWyuWIF";
+let writeKey = "UR7QPj7mCisXWRKhwEIMyfR8W27AiCyQ";
 if (window.location.search.split('=')[0] === "?wk") {
     writeKey = window.location.search.split('=')[1]
 } else {
