@@ -1,4 +1,5 @@
-let writeKey = "UR7QPj7mCisXWRKhwEIMyfR8W27AiCyQ";
+// writekey from https://app.segment.com/friendbuy-james
+let writeKey = "1tmwYvgs9tOKo0NqnGJcO9LePt5oJvjA";
 if (window.location.search.split('=')[0] === "?wk") {
     writeKey = window.location.search.split('=')[1]
 } else {
