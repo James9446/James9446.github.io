@@ -29,8 +29,8 @@ const updateAllUserInfo = () => {
   // Friendbuy Data
   const friendbuyLocalStorage = deepParseJson(localStorage.getItem("persist:friendbuy-msdk-06192019-root"))
 
-  const customerId = friendbuyLocalStorage.customer.id ? friendbuyLocalStorage.customer.id : "";
-  const friendbuyEmail = friendbuyLocalStorage.customer.email ? friendbuyLocalStorage.customer.email : "";
+  const customerId = friendbuyLocalStorage.customer && friendbuyLocalStorage.customer.id ? friendbuyLocalStorage.customer.id : "";
+  const friendbuyEmail = friendbuyLocalStorage.customer && friendbuyLocalStorage.customer.email ? friendbuyLocalStorage.customer.email : "";
 
   // User ID View
   updateView("customerId", "customerId", "", "P", customerId);
@@ -42,7 +42,7 @@ const updateAllUserInfo = () => {
     "getVisitorStatus",
     function (status) {
       try {
-        const attributionId = status.payload.attributionId ? status.payload.attributionId : "";
+        const attributionId = status.payload && status.payload.attributionId ? status.payload.attributionId : "";
         updateView("attributionId", "attributionId", "", "p", attributionId);
       } catch (error) {
         console.error(error);
