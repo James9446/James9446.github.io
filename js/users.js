@@ -5,7 +5,7 @@ users.james = {
   traits: {
     first_name: "James",
     last_name: "Reynolds",
-    email: "james.reynolds@gmailx.com",
+    email: "james+advocate@friendbuy.com",
     address: {
       street: "101 Spear St",
       city: "San Francisco",
@@ -19,7 +19,7 @@ users.luigi = {
   userId: "80085",
   traits: {
     name: "Luigi Mario",
-    email: "luigi@brothersplumbing.it",
+    email: "james+luigi@friendbuy.com",
     address: {
       street: "1 Up St",
       city: "Toad Town",
@@ -34,7 +34,7 @@ users.mario = {
   userId: "58008",
   traits: {
     name: "Mario Mario",
-    email: "mario@brothersplumbing.it",
+    email: "james+mario@friendbuy.com",
     address: {
       street: "1 Up St",
       city: "Toad Town",
@@ -49,7 +49,7 @@ users.homer = {
   userId: 'smrt0001',
   traits: {
     name: "Homer Simpson",
-    email: "homer@snpp.com",
+    email: "james+homer@friendbuy.com",
     address: {
       street: "742 Evergreen Terrace",
       city: "Springfield",

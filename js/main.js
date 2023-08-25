@@ -16,14 +16,49 @@ const updateView = (targetId, newId, label, element, method='', addElement) => {
 }
 
 const updateAllUserInfo = () => {
+  // Segment Data
   // Anonymous ID View
   updateView("anony", "anony", "", "P", analytics.user().anonymousId());
   
   // User ID View
   updateView("user", "user", "", "P", analytics.user().id());
 
-  // Traits View
-  updateView("traits", "traits", "", "p", JSON.stringify(analytics.user().traits(), null, '\t'));
+  // Email View
+  updateView("seg-email", "seg-email", "", "p", analytics.user().traits().email);
+
+  // Friendbuy Data
+  const friendbuyLocalStorage = deepParseJson(localStorage.getItem("persist:friendbuy-msdk-06192019-root"))
+
+  console.log(friendbuyLocalStorage);
+
+  // User ID View
+  updateView("customerId", "customerId", "", "P", friendbuyLocalStorage.customer.id);
+      
+  // Email View
+  updateView("fnd-email", "fnd-email", "", "p", friendbuyLocalStorage.customer.email);
+
+  friendbuyAPI.push([
+    "getVisitorStatus",
+    function (status) {
+      try {
+        console.log(status.payload.attributionId);
+        updateView("attributionId", "attributionId", "", "p", status.payload.attributionId);
+      } catch (error) {
+        console.error(error);
+      }
+
+    },
+  ]);
+}
+
+function deepParseJson(json) {
+  var obj = JSON.parse(json);
+  for (var k in obj) {
+      if (typeof obj[k] === "string" && obj[k][0] === "{") {
+          obj[k] = deepParseJson(obj[k]);
+      }
+  }
+  return obj;
 }
 
 // Button Functions
@@ -310,18 +345,15 @@ document.getElementById("fbuy-sign-up").addEventListener("click", fBuyTrackSignU
 // Initial View
 analytics.ready(() => {
   updateAllUserInfo();
-//   hbspt.forms.create({
-//    region: "na1",
-//    portalId: "21231932",
-//    formId: "d000eed0-eae2-496b-862c-162334695925"
-//   });
-  
-  // testing load time tracking
-//  (function() { var interval = setInterval(sendTrack, 200); function sendTrack() { if (performance.timing.domComplete != 0){ var loadTime = (performance.timing.domComplete - performance.timing.navigationStart) / 1000; analytics.track('Page Load', { 'Load Time': loadTime }); clearInterval(interval); } } })();
 
- 
-//  document.getElementByClassName("hs-button primary large")[0].addEventListener("submit", createEventsFromHubSpotForm);
-//  document.getElementById("hsForm_d000eed0-eae2-496b-862c-162334695925").addEventListener("submit", createEventsFromHubSpotForm);
+  friendbuyAPI.push([
+    "subscribe",
+    "couponReceived",
+    function (coupon) {
+      console.log("coupon: ", coupon); 
+      updateView("coupon-header", "coupon-header", "", "H3", `Coupon Applied: ${coupon}`);
+    },
+  ]);
 });
 
 // <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/shell.js"></script>
