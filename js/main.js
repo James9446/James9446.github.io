@@ -29,8 +29,8 @@ const updateAllUserInfo = () => {
   // Friendbuy Data
   const friendbuyLocalStorage = deepParseJson(localStorage.getItem("persist:friendbuy-msdk-06192019-root"))
 
-  const customerId = friendbuyLocalStorage.customer && friendbuyLocalStorage.customer.id ? friendbuyLocalStorage.customer.id : "";
-  const friendbuyEmail = friendbuyLocalStorage.customer && friendbuyLocalStorage.customer.email ? friendbuyLocalStorage.customer.email : "";
+  const customerId = friendbuyLocalStorage && friendbuyLocalStorage.customer && friendbuyLocalStorage.customer.id ? friendbuyLocalStorage.customer.id : "";
+  const friendbuyEmail = friendbuyLocalStorage && friendbuyLocalStorage.customer && friendbuyLocalStorage.customer.email ? friendbuyLocalStorage.customer.email : "";
 
   // User ID View
   updateView("customerId", "customerId", "", "P", customerId);
