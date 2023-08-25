@@ -353,6 +353,7 @@ analytics.ready(() => {
     function (coupon) {
       console.log("coupon: ", coupon); 
       updateView("coupon-header", "coupon-header", "", "H3", `Coupon Applied: ${coupon}`);
+      updateAllUserInfo();
     },
   ]);
 });
