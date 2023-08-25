@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <meta name="description" content="">
-  <title>Success Engineering</title>
+  <title>Home Page</title>
   <link rel="shortcut icon" type="image/x-icon" href="images/duck.ico"/>
   <link rel="stylesheet" href="./css/main.css">
   <script src='./js/analytics.js'></script>
@@ -15,14 +15,16 @@
 
 <body>
   <div class="header">
-      <h1>Reynolds</h1>
+      <h1>Home</h1>
+      <p id="coupon-header"></p>
   </div>
 
   <div class="topnav">
+    <a href="./index.html">Home</a>
+    <a href="./loyalty.html">Loyalty</a>
     <a href="https://app.segment.com/james9446/sources/javascript/debugger" target="_blank">Debugger</a>
     <a href="https://github.com/James9446/James9446.github.io" target="_blank">GitHub</a>
-    <a href="https://james9446.github.io/friends.html">Friends 0</a>
-    <a href="./friends.html">Friends 1</a>
+    
     <p id="writeKeyValue"></p>
   </div>
   
@@ -116,15 +118,19 @@
         <div class="card">
           <h3>Anonymous ID:</h3>
           <p id="anony"></p>
+          <h3>User ID:</h3>
+          <p id="user"></p>
+          <h3>Segment Email:</h3>
+          <p id="seg-email"></p>
         </div>
         <div class="card">
-            <h3>User ID:</h3>
-            <p id="user"></p>
-          </div>
-          <div class="card">
-            <h3>Traits:</h3>
-            <p id="traits"></p>
-          </div>
+          <h3>Customer ID:</h3>
+          <p id="customerId"></p>
+          <h3>Friendbuy Email:</h3>
+          <p id="fnd-email"></p>
+          <h3>Attribution ID:</h3>
+          <p id="attributionId"></p>
+        </div>
         <div class="card">
           <h3>Events</h3>
           <div id="track">
