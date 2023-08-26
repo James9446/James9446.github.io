@@ -303,7 +303,7 @@ function fBuyTrackPurchase(e) {
           products: ${JSON.stringify(deepParseJson(JSON.stringify(products)), null, 2)},
           customer: {
             email: "",
-            id: ", 
+            id: "", 
             firstName: "", 
             lastName: ""
           }
