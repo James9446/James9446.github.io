@@ -32,8 +32,9 @@ const updateAllUserInfo = () => {
   const customerId = friendbuyLocalStorage && friendbuyLocalStorage.customer && friendbuyLocalStorage.customer.id ? friendbuyLocalStorage.customer.id : "";
   const friendbuyEmail = friendbuyLocalStorage && friendbuyLocalStorage.customer && friendbuyLocalStorage.customer.email ? friendbuyLocalStorage.customer.email : "";
 
+
   // User ID View
-  updateView("customerId", "customerId", "", "P", customerId);
+  updateView("customer-id", "customer-id", "", "P", customerId);
       
   // Email View
   updateView("fnd-email", "fnd-email", "", "p", friendbuyEmail);
@@ -43,11 +44,12 @@ const updateAllUserInfo = () => {
     function (status) {
       try {
         const attributionId = status.payload && status.payload.attributionId ? status.payload.attributionId : "";
-        updateView("attributionId", "attributionId", "", "p", attributionId);
+        const referralCode = status.payload && status.payload.referralCode ? status.payload.referralCode : "";
+        updateView("attribution-id", "attribution-id", "", "p", attributionId);
+        updateView("referral-code", "referral-code", "", "p", referralCode);
       } catch (error) {
         console.error(error);
       }
-
     },
   ]);
 }
@@ -62,43 +64,75 @@ function deepParseJson(json) {
   return obj;
 }
 
-// Button Functions
+// Segment All Ecommerce Events
 const fireEvent = (e) => {
   let event = ecommerceEvents[document.getElementById("eventDropdown").value];
+  const coupon = document.getElementById("coupon-header").innerText;
+
+  if (event.properties.coupon) {
+    event.properties.coupon = coupon;
+  }
+  if (event.properties.order_id) {
+    event.properties.order_id = crypto.randomUUID();
+  }
   if (e.shiftKey) {
     return console.log(`analytics.track(${JSON.stringify(event.eventName)}, ${JSON.stringify(event.properties, null, ' ')})`);
   }
   analytics.track(event.eventName, event.properties)
 }
 
-// const eventFunnel = (e) => {
-//   console.log(e.target.id)
-//   let eventList = funnels[e.target.id];
-//   let events = ecommerceEvents;
-//   if (e.target.id === 'demo_events') {
-//     events = demo_events;
-//   }
-//   for (let i = 0; i < events.length; i++) {
-//     let event = events[eventList[i]];
-//     analytics.track(event.eventName, event.properties);
-//   }
-// }
+// Segment Dedicated Track Buttons
+const orderCompleted = (e) => {
+  let event = ecommerceEvents.orderCompleted;
+  const coupon = document.getElementById("coupon-header").innerText;
+  event.properties.coupon = coupon;
+  event.properties.order_id = crypto.randomUUID();
+  if (e.shiftKey) {
+    return console.log(`analytics.track(${JSON.stringify(event.eventName)}, ${JSON.stringify(event.properties, null, ' ')})`);
+  }
+  analytics.track(event.eventName, event.properties)
+};
 
-// const eventFunnel = (e) => {
-//   let eventList = funnels[e.target.id];
-//   let events = ecommerceEvents;
-//   if (e.target.id === 'demo_events') {
-//     events = demoEvents;
-//   }
-//   for (let i = 0; i < eventList.length; i++) {
-//     let event = ecommerceEvents[eventList[i]];
-//     setTimeout(
-//       () => { 
-//         analytics.track(event.eventName, event.properties); 
-//       }
-//       , 9000);
-//   }
-// }
+const signedUp = (e) => {
+  let user = getUserData();
+  if (e.shiftKey) {
+    return console.log(
+      `analytics.track('Signed Up', {
+        firstName: ${JSON.stringify(user.traits.first_name)},
+        lastName: ${JSON.stringify(user.traits.last_name)},
+        email: ${JSON.stringify(user.traits.email)},
+      });`
+    );
+  }
+  analytics.track('Signed Up', {
+    firstName: user.traits.first_name,
+    lastName: user.traits.last_name,
+    email: user.traits.email,
+  });
+};
+
+const customEvent = (e) => {
+  const coupon = document.getElementById("coupon-header").innerText;
+  const attributionId = document.getElementById("attribution-id").innerText;
+  const referralCode = document.getElementById("referral-code").innerText;
+
+  if (e.shiftKey) {
+    return console.log(
+      `analytics.track("custom_event", {
+        coupon: ${JSON.stringify(coupon)},
+        attributionId: ${JSON.stringify(attributionId)},
+        referralCode: ${JSON.stringify(referralCode)}
+      })`
+    );
+  }
+  analytics.track("custom_event", {
+    coupon,
+    attributionId,
+    referralCode
+  })
+};
+
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -155,93 +189,37 @@ const getWriteKey = () => {
 }
 
 const resetAnalytics = () => {
-    analytics.reset();
-    updateAllUserInfo();
+  analytics.reset();
+  updateAllUserInfo();
+}
+
+const clearStorageAndCookies = () => {
+  localStorage.removeItem("persist:friendbuy-msdk-06192019-root");
+  document.cookie = "name=globalId; expires=Thu, 01 Jan 1970 00:00:00 UTC"; 
+  updateAllUserInfo();
 }
 
 const logInt = () => {
   console.info(analytics.Integrations);
 }
 
-const getPassword = () => {
-  let length = document.getElementById("lengthInput").value || 16;
-  let arg = document.getElementById("specialInput").value || "~!@#$%^&*()_+-=[]{}|;:.,?><";
-  if (length < 4) {
-    updateView("passwordValue", "passwordValue", "", "P", "Length must be at least 4");
-    return console.error("Length must be at least 4")
-  }
-  const lowercase = ["a","b","c","d","e","f","g","h","i","j","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-  const uppercase = lowercase.join("").toUpperCase().split("");
-  const specialChars = arg.split("").filter(item => item.trim().length);
-  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  let hasNumber = false;
-  let hasUpper = false;
-  let hasLower = false;
-  let hasSpecial = false;
-
-  if ( Number(length)) {
-    length = Number(length)
-  } else {
-    return console.error("Enter a valid length for the first argument.")
-  }
-
-  let password = [];
-  let lastChar;
-  for (let i = 0; i < length; i++) {
-    let char = newChar(lowercase, uppercase, numbers, specialChars);
-    if (char !== lastChar) {
-      password.push(char);
-      lastChar = char
-      if (Number(char)) {
-        hasNumber = true
+const logVisitor = () => {
+  friendbuyAPI.push([
+    "getVisitorStatus",
+    function (status) {
+      try {
+        console.log(status)
+      } catch (error) {
+        console.error(error);
       }
-      if (lowercase.indexOf(char)> -1) {
-        hasLower = true
-      } 
-      if (uppercase.indexOf(char) > -1) {
-        hasUpper = true
-      }
-      if (specialChars.indexOf(char)> -1) {
-        hasSpecial = true
-      }
-    } else {
-      i--
-    }
-    if (i === length -1 && (!hasNumber || !hasUpper || !hasLower || !hasSpecial)) {
-      hasNumber = false;
-      hasUpper = false;
-      hasLower = false;
-      hasSpecial = false;
-      password = [];
-      i = -1;
-    }
-  }
-  function newChar(lower, upper, nums, specials) {
-    let set = [lower, upper, nums, specials];
-    let pick = set[Math.floor(Math.random() * set.length)];
-    return pick[Math.floor(Math.random() * pick.length)];
-  }
-  updateView("passwordValue", "passwordValue", "", "P", password.join(""));
-  updateView("copyPassword", "copyPassword", "", "button", "copy text");
-  document.getElementById("copyPassword").addEventListener("click", copyPassword);
+    },
+  ]);
 }
 
 const copyPassword = () => {
   let text = document.getElementById("passwordValue").textContent;
   navigator.clipboard.writeText(text);
 };
-
-// HubSpot Form Submission Events
-// const createEventsFromHubSpotForm = () => {
-//   const firstName = document.getElementById("firstname-d000eed0-eae2-496b-862c-162334695925").value;
-//   const lastName = document.getElementById("lastname-d000eed0-eae2-496b-862c-162334695925").value;
-//   const email = document.getElementById("email-d000eed0-eae2-496b-862c-162334695925").value;
-//   const phone = document.getElementById("phone-d000eed0-eae2-496b-862c-162334695925").value;
-//   const companyName = document.getElementById("company-d000eed0-eae2-496b-862c-162334695925").value;
-//   const country = document.getElementById("country-d000eed0-eae2-496b-862c-162334695925").value;
-//   cosnole.log('For Submitted');
-//   console.log(firstName, lastName);
-// };
 
 // ---- FRIENDBUY CODE SECTION START ----
 
@@ -266,7 +244,6 @@ const fBuyTrackCustomer = (e) => {
       ]);`
     );
   }
-
   friendbuyAPI.push([
     "track",
     "customer",
@@ -277,24 +254,63 @@ const fBuyTrackCustomer = (e) => {
       lastName: user.traits.last_name 
     },
   ]);
-
+  setTimeout(() => {
+    // wait for local storage to update
+    updateAllUserInfo()
+  }, 200)
 }
 
-function fBuyTrackPage() {
-  console.log("fBuy Track Page");
+function fBuyTrackPage(e) {
+  const page = document.getElementById("page").innerText;
+  console.log("fBuy Track Page: ", page);
+  
+  if (e.shiftKey) {
+    return console.log(
+      `friendbuyAPI.push([
+        "track",
+        "page",
+        {
+          name: ${JSON.stringify(page)},
+        }
+      ]);`
+    )
+  }
   friendbuyAPI.push([
     "track",
     "page",
     {
-      name: "Home",
+      name: page,
     }
   ]);
 }
 
-function fBuyTrackPurchase() {
+function fBuyTrackPurchase(e) {
   console.log("fBuy Track Purchase");
-  let user = getUserData();
-  let products = ecommerceEvents["Order Completed"].products;
+  const user = getUserData();
+  const products = ecommerceEvents.orderCompleted.properties.products;
+  const coupon = document.getElementById("coupon-header").innerText;
+
+  if (e.shiftKey) {
+    return console.log(
+      `friendbuyAPI.push([
+        "track",
+        "purchase",
+        {
+          id: ${JSON.stringify(crypto.randomUUID())},
+          amount: 22,
+          currency: "USD", 
+          couponCode: ${JSON.stringify(coupon)},   
+          products: ${JSON.stringify(deepParseJson(JSON.stringify(products)), null, 2)},
+          customer: {
+            email: ${JSON.stringify(user.traits.email)},
+            id: ${JSON.stringify(user.userId)}, 
+            firstName: ${JSON.stringify(user.traits.first_name)}, 
+            lastName: ${JSON.stringify(user.traits.last_name)} 
+          }
+        },
+      ]);`
+    );
+  }
   friendbuyAPI.push([
     "track",
     "purchase",
@@ -302,44 +318,85 @@ function fBuyTrackPurchase() {
       id: crypto.randomUUID(),
       amount: 22,
       currency: "USD", 
-      isNewCustomer: true, 
-      couponCode: "code001",   
+      couponCode: coupon,   
       products,
-    }
+      customer: {
+        email: user.traits.email,
+        id: user.userId, 
+        firstName: user.traits.first_name, 
+        lastName: user.traits.last_name 
+      }
+    },
   ]);
+  setTimeout(() => {
+    // wait for local storage to update
+    updateAllUserInfo()
+  }, 200)
 }
 
-function fBuyTrackSignUp() {
+function fBuyTrackSignUp(e) {
   console.log("fBuy Track Sign Up");
   let user = getUserData();
+  if (e.shiftKey) {
+    return console.log(
+      `friendbuyAPI.push([
+        "track",
+        "sign_up",
+        {
+          email: ${JSON.stringify(user.traits.email)},
+          id: ${JSON.stringify(user.userId)}, 
+          name: ${JSON.stringify(`${user.traits.first_name} ${user.traits.last_name}`)} 
+        },
+      ]);`
+    )
+  }
   friendbuyAPI.push([
     "track",
-    "customer",
+    "sign_up",
     {
       email: user.traits.email,
       id: user.userId, 
       name: `${user.traits.first_name} ${user.traits.last_name}` 
     },
   ]);
+  setTimeout(() => {
+    // wait for local storage to update
+    updateAllUserInfo()
+  }, 200)
 }
+
+// function deepParseJson(json) {
+//   var obj = JSON.parse(json);
+//   for (var k in obj) {
+//       if (typeof obj[k] === "string" && obj[k][0] === "{") {
+//           obj[k] = deepParseJson(obj[k]);
+//       }
+//   }
+//   return obj;
+// }
 
 
 // ---- FRIENDBUY CODE SECTION END ----
 
 // Button Event Listeners
+
+// addEventListener("load", () => {updateAllUserInfo()});
 document.getElementById("reset").addEventListener("click", resetAnalytics);
+document.getElementById("clear-local-storage").addEventListener("click", clearStorageAndCookies);
 document.getElementById("getWriteKey").addEventListener("click", getWriteKey);
 document.getElementById("callIdentify").addEventListener("click", callIdentify);
 document.getElementById("logInt").addEventListener("click", logInt);
-document.getElementById("getPassword").addEventListener("click", getPassword);
+document.getElementById("logVisitor").addEventListener("click", logVisitor);
 document.getElementById("fireEvent").addEventListener("click", fireEvent);
+document.getElementById("order-completed").addEventListener("click", orderCompleted);
+document.getElementById("signed-up").addEventListener("click", signedUp);
+document.getElementById("custom-event").addEventListener("click", customEvent);
 document.getElementById("funnel").addEventListener("click", eventFunnel);
 document.getElementById("demo_pages").addEventListener("click", demoPageFunnel);
 document.getElementById("demo_events").addEventListener("click", eventFunnel);
 document.getElementById("fbuy-customer").addEventListener("click", fBuyTrackCustomer);
 document.getElementById("fbuy-page").addEventListener("click", fBuyTrackPage);
 document.getElementById("fbuy-purchase").addEventListener("click", fBuyTrackPurchase);
-// document.getElementById("fbuy-product").addEventListener("click", );
 document.getElementById("fbuy-sign-up").addEventListener("click", fBuyTrackSignUp);
 
 
@@ -354,6 +411,16 @@ analytics.ready(() => {
       console.log("coupon: ", coupon); 
       updateView("coupon-header", "coupon-header", "", "H3", `Coupon Applied: ${coupon}`);
       updateAllUserInfo();
+    },
+  ]);
+
+  friendbuyAPI.push([
+    "subscribe",
+    "widgetActionTriggered",
+    function (action) {
+      if (action.actionName === "emailShare" || action.actionName === "copyText" || action.actionName === "advocateEmailCaptured") {
+        updateAllUserInfo();
+      }
     },
   ]);
 });
@@ -394,27 +461,7 @@ analytics.on('page', function(event, properties, options) {
 }); 
 
 
-// analytics.on('track', function(event, properties, options) {
 
-//   console.log('event', event);
-//   console.log('properties', properties);
-//   console.log('options', options);
-
-// });
-  
-// analytics.ready(() => {
-//   console.log('Ready');
-//   console.log('userId:', analytics.user().id())
-// });
-
-// const getRandomNumber = () => {
-//   let random = Math.floor(Math.random() * 10) + 1;
-//   let x = Date.now();
-//   analytics.track('Number Generated', {
-//     range: '1 to 10',
-//     number: random
-//   });
-// }
 
 // const getOS = () => {
 //   var OSName="Unknown OS";
