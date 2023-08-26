@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <meta name="description" content="">
-  <title>Friend Page</title>
+  <title>Friend Landing Page</title>
   <link rel="shortcut icon" type="image/x-icon" href="images/duck.ico"/>
   <link rel="stylesheet" href="./css/main.css">
   <script src='./js/analytics.js'></script>
@@ -39,10 +39,33 @@
             <option value="homer">Homer Simpson</option>
           </select>
           <button id="callIdentify">Identify</button>
-          <button id="reset">Reset</button>
         </div>
         <div class="card">
-          <h2>Track</h2>
+          <h2>Segment Events</h2>
+          <div>
+            <button id="order-completed">Order Completed</button>
+            <button id="signed-up">Signed Up</button>
+            <button id="custom-event">Custom Event</button>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Friendbuy Events</h2>
+          <div>
+            <button id="fbuy-customer">Track Customer</button>
+            <button id="fbuy-purchase">Track Purchase</button>
+            <button id="fbuy-page">Track Page</button>
+            <button id="fbuy-sign-up">Track Sign Up</button>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Clear Data</h2>
+          <div>
+            <button id="reset">Reset Segment</button>
+            <button id="clear-local-storage">Clear fb Local Storage & Cookies</button>
+          </div>
+        </div>
+        <div class="card">
+          <h2>All Ecommerce Events</h2>
           <select id="eventDropdown">
             <option value="productsSearched">Products Searched</option>
             <option value="productListViewed">Product List Viewed</option>
@@ -76,16 +99,6 @@
           <button id="fireEvent">Fire Event</button>
         </div>
         <div class="card">
-          <h2>Friendbuy</h2>
-          <div>
-            <button id="fbuy-customer">FBuy Track Customer</button>
-            <button id="fbuy-page">FBuy Track Page</button>
-            <button id="fbuy-purchase">FBuy Track Purchase</button>
-            <button id="fbuy-product">FBuy Track Product</button>
-            <button id="fbuy-sign-up">FBuy Track Sign Up</button>
-          </div>
-        </div>
-        <div class="card">
           <h2>Funnels</h2>
           <div>
             <button id="funnel">Purchase Funnel</button>
@@ -95,22 +108,18 @@
         </div>
         <div class="card">
           <h2>Utilities</h2>
+          <h4>Log Visitor</h4>
+          <div>
+            <button id="logVisitor">Visitor Status</button>
+          </div>
+          <h4>Log Integrations</h4>
+          <div>
+            <button id="logInt">Integrations</button>
+          </div>
           <h4>Load different source</h4>
           <div>
             <input type="text" id="writeKeyInput" placeholder="Enter Write Key">
             <button id="getWriteKey">Load Write Key</button>
-          </div>
-          <h4>Log Integrations</h4>
-          <div>
-            <button id="logInt">Log Integrations</button>
-          </div>
-          <h4>Generate Password</h4>
-          <div>
-            <button id="getPassword">Generate Password</button>
-            <input type="number" id="lengthInput" placeholder="Length">
-            <input type="text" id="specialInput" placeholder="Special Characters">
-            <p id="passwordValue"></p>
-            <p id="copyPassword"></p>
           </div>
         </div>
       </div>
@@ -125,14 +134,16 @@
         </div>
         <div class="card">
           <h3>Customer ID:</h3>
-          <p id="customerId"></p>
-          <h3>Friendbuy Email:</h3>
+          <p id="customer-id"></p>
+          <h3>FBuy Email:</h3>
           <p id="fnd-email"></p>
+          <h3>Referral Code:</h3>
+          <p id="referral-code"></p>
           <h3>Attribution ID:</h3>
-          <p id="attributionId"></p>
+          <p id="attribution-id"></p>
         </div>
         <div class="card">
-          <h3>Events</h3>
+          <h3>Segment Events</h3>
           <div id="track">
             <p id="event"></p>
           </div>
