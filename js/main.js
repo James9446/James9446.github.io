@@ -302,13 +302,20 @@ function fBuyTrackPurchase(e) {
           couponCode: ${JSON.stringify(coupon)},   
           products: ${JSON.stringify(deepParseJson(JSON.stringify(products)), null, 2)},
           customer: {
-            email: ${JSON.stringify(user.traits.email)},
-            id: ${JSON.stringify(user.userId)}, 
-            firstName: ${JSON.stringify(user.traits.first_name)}, 
-            lastName: ${JSON.stringify(user.traits.last_name)} 
+            email: "",
+            id: ", 
+            firstName: "", 
+            lastName: ""
           }
         },
       ]);`
+      // Leaving this option here in comments to pull customer data from the user dropdown
+      // customer: {
+      //   email: ${JSON.stringify(user.traits.email)},
+      //   id: ${JSON.stringify(user.userId)}, 
+      //   firstName: ${JSON.stringify(user.traits.first_name)}, 
+      //   lastName: ${JSON.stringify(user.traits.last_name)}
+      // }
     );
   }
   friendbuyAPI.push([
@@ -320,12 +327,12 @@ function fBuyTrackPurchase(e) {
       currency: "USD", 
       couponCode: coupon,   
       products,
-      customer: {
-        email: user.traits.email,
-        id: user.userId, 
-        firstName: user.traits.first_name, 
-        lastName: user.traits.last_name 
-      }
+      // customer: {
+      //   email: user.traits.email,
+      //   id: user.userId, 
+      //   firstName: user.traits.first_name, 
+      //   lastName: user.traits.last_name 
+      // }
     },
   ]);
   setTimeout(() => {
