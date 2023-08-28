@@ -181,10 +181,26 @@ const callIdentify = (e) => {
   analytics.identify(user.userId, user.traits);
 }
 
+const pointsEarned = (e) => {
+  const points = document.getElementById("points-dropdown").value.split("-")[1];
+  if (e.shiftKey) {
+    return console.log(`analytics.track("points_earned", { 
+        points: ${points}
+      });`
+    )
+  }
+  if (!analytics.user().id()) {
+    updateView("login-warning", "login-warning", "You must be logged in to earn points", "P");
+    return;
+  }
+  updateView("login-warning", "login-warning", "", "P");
+  analytics.track("points_earned", { points });
+}
+
 const getWriteKey = () => {
   let wk = document.getElementById("writeKeyInput").value;
   if (wk) {
-      location.replace("https://james9446.github.io/?wk=" + wk);
+    location.replace("https://james9446.github.io/?wk=" + wk);
   }
 }
 
@@ -372,22 +388,14 @@ function fBuyTrackSignUp(e) {
   }, 200)
 }
 
-// function deepParseJson(json) {
-//   var obj = JSON.parse(json);
-//   for (var k in obj) {
-//       if (typeof obj[k] === "string" && obj[k][0] === "{") {
-//           obj[k] = deepParseJson(obj[k]);
-//       }
-//   }
-//   return obj;
-// }
-
 
 // ---- FRIENDBUY CODE SECTION END ----
 
-// Button Event Listeners
-
+// Button Event Listener
 // addEventListener("load", () => {updateAllUserInfo()});
+if (window.location.href.includes("/loyalty.html")) {
+  document.getElementById("points-earned").addEventListener("click", pointsEarned);
+} 
 document.getElementById("reset").addEventListener("click", resetAnalytics);
 document.getElementById("clear-local-storage").addEventListener("click", clearStorageAndCookies);
 document.getElementById("getWriteKey").addEventListener("click", getWriteKey);
@@ -432,17 +440,10 @@ analytics.ready(() => {
   ]);
 });
 
-// <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/shell.js"></script>
-// <script>
-//   hbspt.forms.create({
-// 	region: "na1",
-// 	portalId: "21231932",
-// 	formId: "d000eed0-eae2-496b-862c-162334695925"
-// });
-// </script>
 
 analytics.on('identify', () => {
   updateAllUserInfo();
+  updateView("login-warning", "login-warning", "", "P");
 });
 
 updateView("writeKeyValue", "writeKeyValue", "Write Key: ", "P", writeKey);
