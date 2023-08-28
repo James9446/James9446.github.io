@@ -31,14 +31,19 @@ const updateAllUserInfo = () => {
 
   const customerId = friendbuyLocalStorage && friendbuyLocalStorage.customer && friendbuyLocalStorage.customer.id ? friendbuyLocalStorage.customer.id : "";
   const friendbuyEmail = friendbuyLocalStorage && friendbuyLocalStorage.customer && friendbuyLocalStorage.customer.email ? friendbuyLocalStorage.customer.email : "";
+  const isAuthenticated = friendbuyLocalStorage && friendbuyLocalStorage.tracker ? friendbuyLocalStorage.tracker.isAuthenticated : "";
 
 
-  // User ID View
+  // Customer ID View
   updateView("customer-id", "customer-id", "", "P", customerId);
       
-  // Email View
-  updateView("fnd-email", "fnd-email", "", "p", friendbuyEmail);
+  // FBuy Email View
+  updateView("fnd-email", "fnd-email", "", "P", friendbuyEmail);
 
+  // Is Authenticated View
+  updateView("is-authenticated", "is-authenticated", "", "P", isAuthenticated);
+
+  // Attribution ID View
   friendbuyAPI.push([
     "getVisitorStatus",
     function (status) {
@@ -132,9 +137,29 @@ const customEvent = (e) => {
   })
 };
 
+const callIdentify = (e) => {
+  let user = users[document.getElementById("usersDropdown").value];
+  if (e.shiftKey) {
+    return console.log(`analytics.identify(${JSON.stringify(user.userId)}, ${JSON.stringify(user.traits, null, ' ')})`);
+  }
+  analytics.identify(user.userId, user.traits);
+}
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+const pointsEarned = (e) => {
+  const points = document.getElementById("points-dropdown").value.split("-")[1];
+  if (e.shiftKey) {
+    return console.log(`analytics.track("points_earned", { 
+        points: ${points}
+      });`
+    )
+  }
+  if (!analytics.user().id()) {
+    updateView("login-warning", "login-warning", "You must be logged in to earn points", "P");
+    return;
+  }
+  updateView("login-warning", "login-warning", "", "P");
+  analytics.track("points_earned", { points });
+  updateView("points-log", "points-log", `Earned ${points} points`, "P", '', true);
 }
 
 const eventFunnel = (e) => {
@@ -172,38 +197,8 @@ const demoPageFunnel = (e) => {
   }
 };
 
+// Utility Functions
 
-const callIdentify = (e) => {
-  let user = users[document.getElementById("usersDropdown").value];
-  if (e.shiftKey) {
-    return console.log(`analytics.identify(${JSON.stringify(user.userId)}, ${JSON.stringify(user.traits, null, ' ')})`);
-  }
-  analytics.identify(user.userId, user.traits);
-}
-
-const pointsEarned = (e) => {
-  const points = document.getElementById("points-dropdown").value.split("-")[1];
-  if (e.shiftKey) {
-    return console.log(`analytics.track("points_earned", { 
-        points: ${points}
-      });`
-    )
-  }
-  if (!analytics.user().id()) {
-    updateView("login-warning", "login-warning", "You must be logged in to earn points", "P");
-    return;
-  }
-  updateView("login-warning", "login-warning", "", "P");
-  analytics.track("points_earned", { points });
-  updateView("points-log", "points-log", `Earned ${points} points`, "P", '', true);
-}
-
-const getWriteKey = () => {
-  let wk = document.getElementById("writeKeyInput").value;
-  if (wk) {
-    location.replace("https://james9446.github.io/?wk=" + wk);
-  }
-}
 
 const resetAnalytics = () => {
   analytics.reset();
@@ -231,6 +226,17 @@ const logVisitor = () => {
       }
     },
   ]);
+}
+
+const getWriteKey = () => {
+  let wk = document.getElementById("writeKeyInput").value;
+  if (wk) {
+    location.replace("https://james9446.github.io/?wk=" + wk);
+  }
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 const copyPassword = () => {
