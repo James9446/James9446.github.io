@@ -23,15 +23,17 @@ const updateAllUserInfo = () => {
   // User ID View
   updateView("user", "user", "", "P", analytics.user().id());
 
+  const email = analytics.user().traits().email ? analytics.user().traits().email : null;
+
   // Email View
-  updateView("seg-email", "seg-email", "", "p", analytics.user().traits().email);
+  updateView("seg-email", "seg-email", "", "P", email);
 
   // Friendbuy Data
   const friendbuyLocalStorage = deepParseJson(localStorage.getItem("persist:friendbuy-msdk-06192019-root"))
 
-  const customerId = friendbuyLocalStorage && friendbuyLocalStorage.customer && friendbuyLocalStorage.customer.id ? friendbuyLocalStorage.customer.id : "";
-  const friendbuyEmail = friendbuyLocalStorage && friendbuyLocalStorage.customer && friendbuyLocalStorage.customer.email ? friendbuyLocalStorage.customer.email : "";
-  const isAuthenticated = friendbuyLocalStorage && friendbuyLocalStorage.tracker ? friendbuyLocalStorage.tracker.isAuthenticated : "";
+  const customerId = friendbuyLocalStorage && friendbuyLocalStorage.customer && friendbuyLocalStorage.customer.id ? friendbuyLocalStorage.customer.id : null;
+  const friendbuyEmail = friendbuyLocalStorage && friendbuyLocalStorage.customer && friendbuyLocalStorage.customer.email ? friendbuyLocalStorage.customer.email : null;
+  const isAuthenticated = friendbuyLocalStorage && friendbuyLocalStorage.tracker ? friendbuyLocalStorage.tracker.isAuthenticated : null;
 
 
   // Customer ID View
@@ -48,8 +50,8 @@ const updateAllUserInfo = () => {
     "getVisitorStatus",
     function (status) {
       try {
-        const attributionId = status.payload && status.payload.attributionId ? status.payload.attributionId : "";
-        const referralCode = status.payload && status.payload.referralCode ? status.payload.referralCode : "";
+        const attributionId = status.payload && status.payload.attributionId ? status.payload.attributionId : null;
+        const referralCode = status.payload && status.payload.referralCode ? status.payload.referralCode : null;
         updateView("attribution-id", "attribution-id", "", "p", attributionId);
         updateView("referral-code", "referral-code", "", "p", referralCode);
       } catch (error) {
