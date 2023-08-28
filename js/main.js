@@ -195,6 +195,7 @@ const pointsEarned = (e) => {
   }
   updateView("login-warning", "login-warning", "", "P");
   analytics.track("points_earned", { points });
+  updateView("points-log", "points-log", `Earned ${points} points`, "P", '', true);
 }
 
 const getWriteKey = () => {
